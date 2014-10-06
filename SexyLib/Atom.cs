@@ -9,16 +9,16 @@ namespace Atmosphere.SexyLib
 {
     public class Atom : ISExp
     {
-        public static readonly Atom True = new Atom(true, AtomType.BOOLEAN);
-        public static readonly Atom False = new Atom(false, AtomType.BOOLEAN);
+        public static readonly Atom True = CreateBoolean(true);
+        public static readonly Atom False = CreateBoolean(false);
 
         public static readonly Atom Null = new Atom(null, AtomType.NONE);
                 
-        public static readonly Atom KeywordLambda = new Atom("lambda", AtomType.SYMBOL);
-        public static readonly Atom KeywordQuote = new Atom("quote", AtomType.SYMBOL);
-        public static readonly Atom KeywordDefine = new Atom("define", AtomType.SYMBOL);
-        public static readonly Atom KeywordDefineSyntax = new Atom("define-syntax", AtomType.SYMBOL);
-        public static readonly Atom KeywordSet = new Atom("set!", AtomType.SYMBOL);
+        public static readonly Atom KeywordLambda = CreateSymbol("lambda");
+        public static readonly Atom KeywordQuote = CreateSymbol("quote");
+        public static readonly Atom KeywordDefine = CreateSymbol("define");
+        public static readonly Atom KeywordDefineSyntax = CreateSymbol("define-syntax");
+        public static readonly Atom KeywordSet = CreateSymbol("set!");
 
 
 
@@ -30,16 +30,11 @@ namespace Atmosphere.SexyLib
 
         }
 
+        [Obsolete]
         public Atom(object value, AtomType type)
         {
             Value = value;
             Type = type;
-        }
-
-        public Atom(Primitive lambda)
-        {
-            Value = lambda;
-            Type = AtomType.PRIMITIVE;
         }
 
 
@@ -83,6 +78,33 @@ namespace Atmosphere.SexyLib
         {
             return new Atom(value, AtomType.DOUBLE);
         }
+
+        public static Atom CreateBoolean(bool value)
+        {
+            return new Atom(value, AtomType.BOOLEAN);
+        }
+
+        public static Atom CreateChar(char character)
+        {
+            return new Atom(character, AtomType.CHAR);
+        }
+        
+        public static Atom CreateString(string value)
+        {
+            return new Atom(value, AtomType.STRING);
+        }
+        
+        public static Atom CreateSymbol(string value)
+        {
+            return new Atom(value, AtomType.SYMBOL);
+        }
+
+        public static Atom CreatePrimitive(Primitive primitive)
+        {
+            return new Atom(primitive, AtomType.PRIMITIVE);
+        }
+
+
 
         /// <summary>
         /// Creates a lambda object with variable arity. Arguments to the function will
@@ -205,6 +227,10 @@ namespace Atmosphere.SexyLib
                     Primitive primitive = (Primitive)Value;
                     rep = "#<primitive:" + primitive.Method.Name.ToLower() + ">";
                     break;
+                    
+                case AtomType.OBJECT:
+                    rep = "#<object:" + Value.ToString() + ">";
+                    break;
 
                 default:
                     throw new Exception(String.Format("No support yet for type {0}", Type));
@@ -239,7 +265,11 @@ namespace Atmosphere.SexyLib
                     Primitive primitive = (Primitive)Value;
                     rep = "#<primitive:" + primitive.Method.Name.ToLower() + ">";
                     break;
-                    
+
+                case AtomType.OBJECT:
+                    rep = "#<object:" + Value.ToString() + ">";
+                    break;
+
                 default:
                     throw new Exception(String.Format("No support yet for type {0}", Type));
             }

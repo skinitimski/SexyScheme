@@ -291,7 +291,7 @@ namespace Atmosphere.SexyLib
             
             if (value.EqualsAny("+", "-", "...", "."))
             {
-                atom = new Atom(value, AtomType.SYMBOL);   
+                atom = Atom.CreateSymbol(value);   
             }
             else
             {           
@@ -301,13 +301,13 @@ namespace Atmosphere.SexyLib
                 {
                     double d = Double.Parse(sb.ToString());
 
-                    atom = new Atom(d, AtomType.DOUBLE);
+                    atom = Atom.CreateDouble(d);
                 }
                 else
                 {
                     long l = Int64.Parse(sb.ToString());
 
-                    atom = new Atom(l, AtomType.LONG);
+                    atom = Atom.CreateLong(l);
                 }
             }
 
@@ -374,7 +374,7 @@ namespace Atmosphere.SexyLib
                 {
                     string value = sb.ToString();
                     
-                    return new Atom(value, AtomType.STRING);
+                    return Atom.CreateString(value);
                 }
                 else
                 {
@@ -429,7 +429,7 @@ namespace Atmosphere.SexyLib
             
             string value = sb.ToString();
             
-            return new Atom(value, AtomType.SYMBOL);
+            return Atom.CreateSymbol(value);
         }
 
         private static ISExp ParseCharOrBoolean(string sexp, ref int index)
@@ -452,7 +452,7 @@ namespace Atmosphere.SexyLib
 
                     // NOTE: no need for delimiter after these two constants (not an error).
 
-                    return new Atom(c == 't', AtomType.BOOLEAN);
+                    return Atom.CreateBoolean(c == 't');
 
                 case '\\':
 
@@ -475,7 +475,7 @@ namespace Atmosphere.SexyLib
                         throw new SexyParserException("Bad character at index {0}", start);
                     }
 
-                    return new Atom(character, AtomType.CHAR);
+                    return Atom.CreateChar(character);
 
                 default:
 

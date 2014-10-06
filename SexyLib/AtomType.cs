@@ -12,7 +12,8 @@ namespace Atmosphere.SexyLib
         STRING,
         SYMBOL,
         PRIMITIVE,
-        LAMBDA
+        LAMBDA,
+        OBJECT
     }
 }
 

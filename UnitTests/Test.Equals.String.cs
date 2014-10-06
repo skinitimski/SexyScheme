@@ -22,21 +22,21 @@ namespace Atmosphere.UnitTests
 
 
 
-            atom1 = new Atom("string", AtomType.STRING);            
+            atom1 = Atom.CreateString("string");            
 
             Assert.IsFalse(atom1.Equals(null));
             Assert.IsFalse(atom1.Equals(10L));
             Assert.IsTrue(atom1.Equals(atom1));
 
-            atom2 = new Atom(6L, AtomType.LONG);
+            atom2 = Atom.CreateLong(6L);
 
             Assert.IsFalse(atom1.Equals(atom2));
             
-            atom2 = new Atom("STRING", AtomType.STRING);
+            atom2 = Atom.CreateString("STRING");
             
             Assert.IsFalse(atom1.Equals(atom2));
             
-            atom2 = new Atom("string", AtomType.STRING);
+            atom2 = Atom.CreateString("string");
             
             Assert.IsTrue(atom1.Equals(atom2));
 

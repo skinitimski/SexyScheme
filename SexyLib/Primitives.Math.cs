@@ -59,11 +59,11 @@ namespace Atmosphere.SexyLib
             
             if (floating)
             {
-                result = new Atom(value, AtomType.DOUBLE);
+                result = Atom.CreateDouble(value);
             }
             else
             {
-                result = new Atom((long)value, AtomType.LONG);
+                result = Atom.CreateLong((long)value);
             }
             
             return result;
@@ -105,11 +105,11 @@ namespace Atmosphere.SexyLib
             
             if (floating)
             {
-                result = new Atom(value, AtomType.DOUBLE);
+                result = Atom.CreateDouble(value);
             }
             else
             {
-                result = new Atom((long)value, AtomType.LONG);
+                result = Atom.CreateLong((long)value);
             }
             
             return result;
@@ -203,7 +203,7 @@ namespace Atmosphere.SexyLib
 
 
             
-            return new Atom(value, AtomType.LONG);
+            return Atom.CreateLong(value);
         }
 
 
@@ -230,11 +230,11 @@ namespace Atmosphere.SexyLib
             
             if (floating)
             {
-                result = new Atom(value, AtomType.DOUBLE);
+                result = Atom.CreateDouble(value);
             }
             else
             {
-                result = new Atom((long)value, AtomType.LONG);
+                result = Atom.CreateLong((long)value);
             }
             
             return result;

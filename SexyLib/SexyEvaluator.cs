@@ -31,38 +31,38 @@ namespace Atmosphere.SexyLib
 
         private void AddPrimitives()
         {            
-            Closure.AddSymbolDefinition("true", new Atom(true, AtomType.BOOLEAN));
-            Closure.AddSymbolDefinition("false", new Atom(false, AtomType.BOOLEAN));
+            Closure.AddSymbolDefinition("true", Atom.True);
+            Closure.AddSymbolDefinition("false", Atom.False);
             
-            Closure.AddSymbolDefinition("if", new Atom(Primitives.If));
-            Closure.AddSymbolDefinition("and", new Atom(Primitives.And));
-            Closure.AddSymbolDefinition("or", new Atom(Primitives.Or));
-            Closure.AddSymbolDefinition("not", new Atom(Primitives.Not));
+            Closure.AddSymbolDefinition("if", Atom.CreatePrimitive(Primitives.If));
+            Closure.AddSymbolDefinition("and", Atom.CreatePrimitive(Primitives.And));
+            Closure.AddSymbolDefinition("or", Atom.CreatePrimitive(Primitives.Or));
+            Closure.AddSymbolDefinition("not", Atom.CreatePrimitive(Primitives.Not));
             
-            //Closure.AddSymbolDefinition("list?", new Atom(Primitives.ListP));
-            Closure.AddSymbolDefinition("pair?", new Atom(Primitives.PairP));
-            Closure.AddSymbolDefinition("boolean?", new Atom(Primitives.BooleanP));
-            Closure.AddSymbolDefinition("char?", new Atom(Primitives.CharP));
-            Closure.AddSymbolDefinition("string?", new Atom(Primitives.StringP));
-            Closure.AddSymbolDefinition("symbol?", new Atom(Primitives.SymbolP));
-            Closure.AddSymbolDefinition("number?", new Atom(Primitives.NumberP));
-            Closure.AddSymbolDefinition("integer?", new Atom(Primitives.IntegerP));
+            //Closure.AddSymbolDefinition("list?", Atom.CreatePrimitive(Primitives.ListP));
+            Closure.AddSymbolDefinition("pair?", Atom.CreatePrimitive(Primitives.PairP));
+            Closure.AddSymbolDefinition("boolean?", Atom.CreatePrimitive(Primitives.BooleanP));
+            Closure.AddSymbolDefinition("char?", Atom.CreatePrimitive(Primitives.CharP));
+            Closure.AddSymbolDefinition("string?", Atom.CreatePrimitive(Primitives.StringP));
+            Closure.AddSymbolDefinition("symbol?", Atom.CreatePrimitive(Primitives.SymbolP));
+            Closure.AddSymbolDefinition("number?", Atom.CreatePrimitive(Primitives.NumberP));
+            Closure.AddSymbolDefinition("integer?", Atom.CreatePrimitive(Primitives.IntegerP));
             
-            Closure.AddSymbolDefinition("+", new Atom(Primitives.Add));            
-            Closure.AddSymbolDefinition("-", new Atom(Primitives.Subtract));       
-            Closure.AddSymbolDefinition("*", new Atom(Primitives.Multiply));       
-            Closure.AddSymbolDefinition("/", new Atom(Primitives.Divide));
-            Closure.AddSymbolDefinition("modulo", new Atom(Primitives.Modulo));
-            Closure.AddSymbolDefinition("expt", new Atom(Primitives.Exponent));
+            Closure.AddSymbolDefinition("+", Atom.CreatePrimitive(Primitives.Add));            
+            Closure.AddSymbolDefinition("-", Atom.CreatePrimitive(Primitives.Subtract));       
+            Closure.AddSymbolDefinition("*", Atom.CreatePrimitive(Primitives.Multiply));       
+            Closure.AddSymbolDefinition("/", Atom.CreatePrimitive(Primitives.Divide));
+            Closure.AddSymbolDefinition("modulo", Atom.CreatePrimitive(Primitives.Modulo));
+            Closure.AddSymbolDefinition("expt", Atom.CreatePrimitive(Primitives.Exponent));
             
-            Closure.AddSymbolDefinition("car", new Atom(Primitives.Car));
-            Closure.AddSymbolDefinition("cdr", new Atom(Primitives.Cdr));
-            Closure.AddSymbolDefinition("cons", new Atom(Primitives.Cons));
-            //Closure.AddSymbolDefinition("list", new Atom(Primitives.List));
+            Closure.AddSymbolDefinition("car", Atom.CreatePrimitive(Primitives.Car));
+            Closure.AddSymbolDefinition("cdr", Atom.CreatePrimitive(Primitives.Cdr));
+            Closure.AddSymbolDefinition("cons", Atom.CreatePrimitive(Primitives.Cons));
+            //Closure.AddSymbolDefinition("list", Atom.CreatePrimitive(Primitives.List));
 
-            Closure.AddSymbolDefinition("write", new Atom(Primitives.Write));
-            Closure.AddSymbolDefinition("display", new Atom(Primitives.Display));
-            Closure.AddSymbolDefinition("exit", new Atom(Primitives.Exit));
+            Closure.AddSymbolDefinition("write", Atom.CreatePrimitive(Primitives.Write));
+            Closure.AddSymbolDefinition("display", Atom.CreatePrimitive(Primitives.Display));
+            Closure.AddSymbolDefinition("exit", Atom.CreatePrimitive(Primitives.Exit));
         }
 
         #endregion Add Primitives
@@ -105,6 +105,8 @@ namespace Atmosphere.SexyLib
                 case AtomType.LAMBDA:
                 case AtomType.PRIMITIVE:
                 case AtomType.STRING:
+                case AtomType.OBJECT:
+
                     evaluated = atom;
                     break;
 
