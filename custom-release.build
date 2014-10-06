@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="Custom-build" basedir=".." default="help">
+
+  <target name="custom">
+
+    <copy file="${sln.dir}/resources/exsc" tofile="${path::combine(environment::get-variable('TIMSKI_BINDIR'), 'exsc')}" />
+    <copy file="${sln.dir}/resources/scsh" tofile="${path::combine(environment::get-variable('TIMSKI_BINDIR'), 'scsh')}" />
+
+  </target>
+
+</project>
