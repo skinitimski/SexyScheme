@@ -1,3 +1,5 @@
 *.userprefs
 bin
 log
+.archive
+dist-*
