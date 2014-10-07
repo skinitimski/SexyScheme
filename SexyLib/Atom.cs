@@ -69,19 +69,19 @@ namespace Atmosphere.SexyLib
             return atom;
         }
 
-        public static Atom CreateLong(long value)
+        public static Atom CreateLong(long @long)
         {
-            return new Atom(value, AtomType.LONG);
+            return new Atom(@long, AtomType.LONG);
         }
 
-        public static Atom CreateDouble(double value)
+        public static Atom CreateDouble(double @double)
         {
-            return new Atom(value, AtomType.DOUBLE);
+            return new Atom(@double, AtomType.DOUBLE);
         }
 
-        public static Atom CreateBoolean(bool value)
+        public static Atom CreateBoolean(bool boolean)
         {
-            return new Atom(value, AtomType.BOOLEAN);
+            return new Atom(boolean, AtomType.BOOLEAN);
         }
 
         public static Atom CreateChar(char character)
@@ -89,14 +89,14 @@ namespace Atmosphere.SexyLib
             return new Atom(character, AtomType.CHAR);
         }
         
-        public static Atom CreateString(string value)
+        public static Atom CreateString(string @string)
         {
-            return new Atom(value, AtomType.STRING);
+            return new Atom(@string, AtomType.STRING);
         }
         
-        public static Atom CreateSymbol(string value)
+        public static Atom CreateSymbol(string symbol)
         {
-            return new Atom(value, AtomType.SYMBOL);
+            return new Atom(symbol, AtomType.SYMBOL);
         }
 
         public static Atom CreatePrimitive(Primitive primitive)
