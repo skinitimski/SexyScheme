@@ -374,6 +374,30 @@ namespace Atmosphere.SexyLib
             }
 
             throw new NotImplementedException("define-syntax not yet implemented.");
+
+            Pair defineSyntaxParts = list.Cdr as Pair;
+
+            if (defineSyntaxParts == null || defineSyntaxParts.Car == null)
+            {
+                throw new BadSyntaxException("define-syntax", list);
+            }
+
+            Atom identifier = defineSyntaxParts.Car as Atom;
+
+            if (identifier == null || !identifier.Type.Equals(AtomType.SYMBOL))
+            {
+                throw new BadSyntaxException("define-syntax", list, "cadr must be an identifier");
+            }
+
+            Pair transformerSpecParts = defineSyntaxParts.Cdr as Pair;
+
+            if (transformerSpecParts == null || !transformerSpecParts.Cdr.Equals(Pair.Empty))
+            {
+                throw new BadSyntaxException("define-syntax", list);
+            }
+
+            Pair transformerSpec = transformerSpecParts.Car as Pair;
+
         }
 
         private static ISExp EvalSet(Pair list, Closure closure, int depth)
