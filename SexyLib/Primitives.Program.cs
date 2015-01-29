@@ -46,7 +46,7 @@ namespace Atmosphere.SexyLib
             }
             else
             {
-                if (!IsInteger(parameters[0]))
+                if (!IsLong(parameters[0]))
                 {
                     throw new UnexpectedTypeException("exit", 0, "integer", parameters[0]);
                 }

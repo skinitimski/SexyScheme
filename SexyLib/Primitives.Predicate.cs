@@ -53,7 +53,7 @@ namespace Atmosphere.SexyLib
         {
             CheckArity("integer?", 1, parameters);
             
-            return Atom.CreateBoolean(IsInteger(parameters[0]));
+            return Atom.CreateBoolean(IsLong(parameters[0]));
         }
 
     }

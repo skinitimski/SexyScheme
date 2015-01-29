@@ -20,7 +20,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyrightAttribute("Copyright (c) 2014, Midnight Computers")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("1.0.0.418")]
+[assembly: AssemblyVersionAttribute("1.0.0.419")]
 [assembly: AssemblyDelaySignAttribute(false)]
 [assembly: AssemblyKeyNameAttribute("")]
 

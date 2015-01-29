@@ -75,7 +75,7 @@ namespace Atmosphere.SexyLib
             return IsOneOf(sexp, AtomType.DOUBLE, AtomType.LONG);
         }
         
-        public static bool IsInteger(ISExp sexp)
+        public static bool IsLong(ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.LONG);
         }

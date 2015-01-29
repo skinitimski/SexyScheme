@@ -158,7 +158,7 @@ namespace Atmosphere.SexyLib
                                                
             for (int i = 0; i < parameters.Length; i++)
             {
-                CheckType(IsInteger, "modulo", i, "integer", parameters[i]);               
+                CheckType(IsLong, "modulo", i, "integer", parameters[i]);               
             }
                 
             long dividend = ((Atom)parameters[0]).GetValueAsLong();

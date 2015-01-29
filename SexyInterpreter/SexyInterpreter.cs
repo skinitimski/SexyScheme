@@ -58,6 +58,8 @@ namespace Atmosphere.SexyInterpreter
                 
                 string sexpString = Console.ReadLine();
 
+                Console.WriteLine(sexpString);
+
                 int index = 0;
 
                 while (index < sexpString.Length && !SexyParser.IsAllWhitespaceAndComments(sexpString, index))

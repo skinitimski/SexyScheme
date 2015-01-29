@@ -62,6 +62,7 @@ namespace Atmosphere.SexyLib
             
             AddPrimitive("write", Primitives.Write);
             AddPrimitive("display", Primitives.Display);
+            AddPrimitive("newline", Primitives.Newline);
             AddPrimitive("exit", Primitives.Exit);
         }
 

@@ -68,6 +68,7 @@
     <Compile Include="Exceptions\BindException.cs" />
     <Compile Include="Exceptions\DefineSyntaxException.cs" />
     <Compile Include="SexyEmbedder.cs" />
+    <Compile Include="Primitives.Data.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
