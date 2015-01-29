@@ -7,7 +7,7 @@ namespace Atmosphere.SexyLib
 {
     public static partial class Primitives
     {        
-        public static ISExp SymbolToString(params ISExp[] parameters)
+        public static ISExp SymbolToString(string name, params ISExp[] parameters)
         {
             CheckArity("symbol->string", 1, parameters);
             
@@ -20,7 +20,7 @@ namespace Atmosphere.SexyLib
             return @string;
         }
         
-        public static ISExp LongToString(params ISExp[] parameters)
+        public static ISExp LongToString(string name, params ISExp[] parameters)
         {
             CheckArity("long->string", 1, parameters);
             
@@ -28,12 +28,12 @@ namespace Atmosphere.SexyLib
             
             Atom @long = parameters[0] as Atom;
             
-            ISExp @string = Atom.CreateString((long)@long.Value.ToString());
+            ISExp @string = Atom.CreateString(@long.Value.ToString());
             
             return @string;
         }
         
-        public static ISExp DoubleToString(params ISExp[] parameters)
+        public static ISExp DoubleToString(string name, params ISExp[] parameters)
         {
             CheckArity("double->string", 1, parameters);
             
@@ -41,7 +41,7 @@ namespace Atmosphere.SexyLib
             
             Atom @double = parameters[0] as Atom;
             
-            ISExp @string = Atom.CreateString((double)@double.Value.ToString());
+            ISExp @string = Atom.CreateString(@double.Value.ToString());
             
             return @string;
         }

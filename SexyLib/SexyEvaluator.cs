@@ -31,8 +31,9 @@ namespace Atmosphere.SexyLib
 
         private void AddPrimitives()
         {            
-            AddPrimitive("true", Atom.True);
-            AddPrimitive("false", Atom.False);
+            Closure.AddSymbolDefinition("true", Atom.True);
+            Closure.AddSymbolDefinition("false", Atom.False);
+
             AddPrimitive("if", Primitives.If);
             AddPrimitive("and", Primitives.And);
             AddPrimitive("or", Primitives.Or);
@@ -48,6 +49,8 @@ namespace Atmosphere.SexyLib
             AddPrimitive("integer?", Primitives.IntegerP);
                         
             AddPrimitive("symbol->string", Primitives.SymbolToString);
+            AddPrimitive("long->string", Primitives.LongToString);
+            AddPrimitive("double->string", Primitives.DoubleToString);
             
             AddPrimitive("+", Primitives.Add);             
             AddPrimitive("-", Primitives.Subtract);        
@@ -66,9 +69,9 @@ namespace Atmosphere.SexyLib
             AddPrimitive("exit", Primitives.Exit);
         }
 
-        private void AddPrimitive(string symbol, Primitive primitive)
+        private void AddPrimitive(string symbol, SexyFunction primitive)
         {
-            Closure.AddSymbolDefinition(symbol, Atom.CreatePrimitive(primitive));
+            Closure.AddSymbolDefinition(symbol, Atom.CreatePrimitive(symbol, primitive));
         }
 
 

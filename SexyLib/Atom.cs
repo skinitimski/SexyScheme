@@ -99,8 +99,10 @@ namespace Atmosphere.SexyLib
             return new Atom(symbol, AtomType.SYMBOL);
         }
 
-        public static Atom CreatePrimitive(Primitive primitive)
+        public static Atom CreatePrimitive(string name, SexyFunction function)
         {
+            Primitive primitive = Primitive.Create(name, function);
+
             return new Atom(primitive, AtomType.PRIMITIVE);
         }
 
@@ -225,7 +227,7 @@ namespace Atmosphere.SexyLib
 
                 case AtomType.PRIMITIVE:
                     Primitive primitive = (Primitive)Value;
-                    rep = "#<primitive:" + primitive.Method.Name.ToLower() + ">";
+                    rep = "#<primitive:" + primitive.Name + ">";
                     break;
                     
                 case AtomType.OBJECT:
@@ -263,7 +265,7 @@ namespace Atmosphere.SexyLib
                     
                 case AtomType.PRIMITIVE:
                     Primitive primitive = (Primitive)Value;
-                    rep = "#<primitive:" + primitive.Method.Name.ToLower() + ">";
+                    rep = "#<primitive:" + primitive.Name + ">";
                     break;
 
                 case AtomType.OBJECT:

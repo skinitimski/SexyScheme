@@ -123,22 +123,22 @@ namespace Atmosphere.SexyLib
 
 
 
-        public static ISExp Add(params ISExp[] parameters)
+        public static ISExp Add(string name, params ISExp[] parameters)
         {
             return AdditiveMath(Addition, "+", 0, parameters);
         }
         
-        public static ISExp Multiply(params ISExp[] parameters)
+        public static ISExp Multiply(string name, params ISExp[] parameters)
         {
             return AdditiveMath(Multiplication, "*", 1, parameters);
         }
         
-        public static ISExp Subtract(params ISExp[] parameters)
+        public static ISExp Subtract(string name, params ISExp[] parameters)
         {
             return SubtractiveMath(Subtraction, "-", 0, parameters);
         }
         
-        public static ISExp Divide(params ISExp[] parameters)
+        public static ISExp Divide(string name, params ISExp[] parameters)
         {
             return SubtractiveMath(Division, "/", 1, parameters);
         }
@@ -149,7 +149,7 @@ namespace Atmosphere.SexyLib
 
 
 
-        public static ISExp Modulo(params ISExp[] parameters)
+        public static ISExp Modulo(string name, params ISExp[] parameters)
         {
             // We could in theory support non-integer modulo, since C# supports it.
             // But it's horribly confusing, especially for negative decimals, so f**k it.
@@ -208,7 +208,7 @@ namespace Atmosphere.SexyLib
 
 
 
-        public static ISExp Exponent(params ISExp[] parameters)
+        public static ISExp Exponent(string name, params ISExp[] parameters)
         {
             CheckArity("expt", 2, parameters);
                        

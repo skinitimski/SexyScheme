@@ -5,8 +5,6 @@ using Atmosphere.SexyLib.Exceptions;
 
 namespace Atmosphere.SexyLib
 {
-    public delegate ISExp Primitive(params ISExp[] parameters);
-
     public static partial class Primitives
     {   
         private delegate bool TypeChecker(ISExp sexp);

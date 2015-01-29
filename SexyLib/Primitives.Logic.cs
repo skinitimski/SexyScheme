@@ -7,7 +7,7 @@ namespace Atmosphere.SexyLib
 {
     public static partial class Primitives
     {        
-        public static ISExp If(params ISExp[] parameters)
+        public static ISExp If(string name, params ISExp[] parameters)
         {
             if (parameters.Length < 2 || parameters.Length > 3)
             {
@@ -35,7 +35,7 @@ namespace Atmosphere.SexyLib
             return result;
         }
         
-        public static ISExp And(params ISExp[] parameters)
+        public static ISExp And(string name, params ISExp[] parameters)
         {            
             ISExp result;
             
@@ -51,7 +51,7 @@ namespace Atmosphere.SexyLib
             return result;
         }
         
-        public static ISExp Or(params ISExp[] parameters)
+        public static ISExp Or(string name, params ISExp[] parameters)
         {            
             ISExp result;
             
@@ -67,7 +67,7 @@ namespace Atmosphere.SexyLib
             return result;
         }
         
-        public static ISExp Not(params ISExp[] parameters)
+        public static ISExp Not(string name, params ISExp[] parameters)
         {            
             if (parameters.Length != 1)
             {

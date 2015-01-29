@@ -19,7 +19,7 @@ namespace Atmosphere.SexyLib
 //            return list;
 //        }
 
-        public static ISExp Car(params ISExp[] parameters)
+        public static ISExp Car(string name, params ISExp[] parameters)
         {
             CheckArity("car", 1, parameters);
 
@@ -31,7 +31,7 @@ namespace Atmosphere.SexyLib
             return pair.Car;
         }
 
-        public static ISExp Cdr(params ISExp[] parameters)
+        public static ISExp Cdr(string name, params ISExp[] parameters)
         {
             CheckArity("cdr", 1, parameters);
 
@@ -43,7 +43,7 @@ namespace Atmosphere.SexyLib
             return list.Cdr;
         }
 
-        public static ISExp Cons(params ISExp[] parameters)
+        public static ISExp Cons(string name, params ISExp[] parameters)
         {
             CheckArity("cons", 2, parameters);
 

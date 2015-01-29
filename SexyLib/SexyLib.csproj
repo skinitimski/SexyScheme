@@ -54,7 +54,6 @@
     <Compile Include="Primitives.Logic.cs" />
     <Compile Include="Primitives.Predicate.cs" />
     <Compile Include="Lambda.cs" />
-    <Compile Include="Primitives.cs" />
     <Compile Include="Primitives.List.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Exceptions\BadSyntaxException.cs" />
@@ -69,6 +68,8 @@
     <Compile Include="Exceptions\DefineSyntaxException.cs" />
     <Compile Include="SexyEmbedder.cs" />
     <Compile Include="Primitives.Data.cs" />
+    <Compile Include="Primitive.cs" />
+    <Compile Include="Primitives.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
