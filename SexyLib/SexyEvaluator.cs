@@ -31,39 +31,45 @@ namespace Atmosphere.SexyLib
 
         private void AddPrimitives()
         {            
-            Closure.AddSymbolDefinition("true", Atom.True);
-            Closure.AddSymbolDefinition("false", Atom.False);
+            AddPrimitive("true", Atom.True);
+            AddPrimitive("false", Atom.False);
+            AddPrimitive("if", Primitives.If);
+            AddPrimitive("and", Primitives.And);
+            AddPrimitive("or", Primitives.Or);
+            AddPrimitive("not", Primitives.Not);
             
-            Closure.AddSymbolDefinition("if", Atom.CreatePrimitive(Primitives.If));
-            Closure.AddSymbolDefinition("and", Atom.CreatePrimitive(Primitives.And));
-            Closure.AddSymbolDefinition("or", Atom.CreatePrimitive(Primitives.Or));
-            Closure.AddSymbolDefinition("not", Atom.CreatePrimitive(Primitives.Not));
+            //AddPrimitive("list?", Primitives.ListP);
+            AddPrimitive("pair?", Primitives.PairP);
+            AddPrimitive("boolean?", Primitives.BooleanP);
+            AddPrimitive("char?", Primitives.CharP);
+            AddPrimitive("string?", Primitives.StringP);
+            AddPrimitive("symbol?", Primitives.SymbolP);
+            AddPrimitive("number?", Primitives.NumberP);
+            AddPrimitive("integer?", Primitives.IntegerP);
+                        
+            AddPrimitive("symbol->string", Primitives.SymbolToString);
             
-            //Closure.AddSymbolDefinition("list?", Atom.CreatePrimitive(Primitives.ListP));
-            Closure.AddSymbolDefinition("pair?", Atom.CreatePrimitive(Primitives.PairP));
-            Closure.AddSymbolDefinition("boolean?", Atom.CreatePrimitive(Primitives.BooleanP));
-            Closure.AddSymbolDefinition("char?", Atom.CreatePrimitive(Primitives.CharP));
-            Closure.AddSymbolDefinition("string?", Atom.CreatePrimitive(Primitives.StringP));
-            Closure.AddSymbolDefinition("symbol?", Atom.CreatePrimitive(Primitives.SymbolP));
-            Closure.AddSymbolDefinition("number?", Atom.CreatePrimitive(Primitives.NumberP));
-            Closure.AddSymbolDefinition("integer?", Atom.CreatePrimitive(Primitives.IntegerP));
+            AddPrimitive("+", Primitives.Add);             
+            AddPrimitive("-", Primitives.Subtract);        
+            AddPrimitive("*", Primitives.Multiply);        
+            AddPrimitive("/", Primitives.Divide);
+            AddPrimitive("modulo", Primitives.Modulo);
+            AddPrimitive("expt", Primitives.Exponent);
+            AddPrimitive("car", Primitives.Car);
+            AddPrimitive("cdr", Primitives.Cdr);
+            AddPrimitive("cons", Primitives.Cons);
+            //AddPrimitive("list", Primitives.List);
             
-            Closure.AddSymbolDefinition("+", Atom.CreatePrimitive(Primitives.Add));            
-            Closure.AddSymbolDefinition("-", Atom.CreatePrimitive(Primitives.Subtract));       
-            Closure.AddSymbolDefinition("*", Atom.CreatePrimitive(Primitives.Multiply));       
-            Closure.AddSymbolDefinition("/", Atom.CreatePrimitive(Primitives.Divide));
-            Closure.AddSymbolDefinition("modulo", Atom.CreatePrimitive(Primitives.Modulo));
-            Closure.AddSymbolDefinition("expt", Atom.CreatePrimitive(Primitives.Exponent));
-            
-            Closure.AddSymbolDefinition("car", Atom.CreatePrimitive(Primitives.Car));
-            Closure.AddSymbolDefinition("cdr", Atom.CreatePrimitive(Primitives.Cdr));
-            Closure.AddSymbolDefinition("cons", Atom.CreatePrimitive(Primitives.Cons));
-            //Closure.AddSymbolDefinition("list", Atom.CreatePrimitive(Primitives.List));
-
-            Closure.AddSymbolDefinition("write", Atom.CreatePrimitive(Primitives.Write));
-            Closure.AddSymbolDefinition("display", Atom.CreatePrimitive(Primitives.Display));
-            Closure.AddSymbolDefinition("exit", Atom.CreatePrimitive(Primitives.Exit));
+            AddPrimitive("write", Primitives.Write);
+            AddPrimitive("display", Primitives.Display);
+            AddPrimitive("exit", Primitives.Exit);
         }
+
+        private void AddPrimitive(string symbol, Primitive primitive)
+        {
+            Closure.AddSymbolDefinition(symbol, Atom.CreatePrimitive(primitive));
+        }
+
 
         #endregion Add Primitives
 
