@@ -10,7 +10,7 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Write(string name, params ISExp[] parameters)
         {
-            CheckArity("write", 1, parameters);
+            CheckArity(name, 1, parameters);
             
             Console.WriteLine(parameters[0].ToString());
             
@@ -19,7 +19,7 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Display(string name, params ISExp[] parameters)
         {
-            CheckArity("display", 1, parameters);
+            CheckArity(name, 1, parameters);
             
             Console.WriteLine(parameters[0].ToDisplay());
             
@@ -28,7 +28,7 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Newline(string name, params ISExp[] parameters)
         {
-            CheckArity("newline", 0, parameters);
+            CheckArity(name, 0, parameters);
 
             Console.WriteLine();
 
@@ -37,7 +37,7 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Exit(string name, params ISExp[] parameters)
         {
-            CheckArity("exit", 0, 1, parameters);
+            CheckArity(name, 0, 1, parameters);
 
             if (parameters.Length == 0)
             {
@@ -48,7 +48,7 @@ namespace Atmosphere.SexyLib
             {
                 if (!IsLong(parameters[0]))
                 {
-                    throw new UnexpectedTypeException("exit", 0, "integer", parameters[0]);
+                    throw new UnexpectedTypeException(name, 0, "integer", parameters[0]);
                 }
 
                 Environment.Exit((int)(long)((Atom)parameters[0]).Value);

@@ -125,22 +125,22 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Add(string name, params ISExp[] parameters)
         {
-            return AdditiveMath(Addition, "+", 0, parameters);
+            return AdditiveMath(Addition, name, 0, parameters);
         }
         
         public static ISExp Multiply(string name, params ISExp[] parameters)
         {
-            return AdditiveMath(Multiplication, "*", 1, parameters);
+            return AdditiveMath(Multiplication, name, 1, parameters);
         }
         
         public static ISExp Subtract(string name, params ISExp[] parameters)
         {
-            return SubtractiveMath(Subtraction, "-", 0, parameters);
+            return SubtractiveMath(Subtraction, name, 0, parameters);
         }
         
         public static ISExp Divide(string name, params ISExp[] parameters)
         {
-            return SubtractiveMath(Division, "/", 1, parameters);
+            return SubtractiveMath(Division, name, 1, parameters);
         }
 
 
@@ -154,11 +154,11 @@ namespace Atmosphere.SexyLib
             // We could in theory support non-integer modulo, since C# supports it.
             // But it's horribly confusing, especially for negative decimals, so f**k it.
             
-            CheckArity("modulo", 2, parameters);
+            CheckArity(name, 2, parameters);
                                                
             for (int i = 0; i < parameters.Length; i++)
             {
-                CheckType(IsLong, "modulo", i, "integer", parameters[i]);               
+                CheckType(IsLong, name, i, "integer", parameters[i]);               
             }
                 
             long dividend = ((Atom)parameters[0]).GetValueAsLong();
@@ -166,7 +166,7 @@ namespace Atmosphere.SexyLib
 
             if (divisor == 0)
             {
-                throw new UndefinedOperationException("modulo: Operation not defined for a divisor of 0.");
+                throw new UndefinedOperationException(String.Format("{0}: Operation not defined for a divisor of 0.", name));
             }
 
             long value;
@@ -210,11 +210,11 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Exponent(string name, params ISExp[] parameters)
         {
-            CheckArity("expt", 2, parameters);
+            CheckArity(name, 2, parameters);
                        
             for (int i = 0; i < parameters.Length; i++)
             {
-                CheckType(IsNumber, "expt", i, "number", parameters[i]);
+                CheckType(IsNumber, name, i, "number", parameters[i]);
             }
 
             bool floating = IsDouble(parameters[0]) || IsDouble(parameters[1]);

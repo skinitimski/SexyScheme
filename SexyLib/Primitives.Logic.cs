@@ -11,7 +11,7 @@ namespace Atmosphere.SexyLib
         {
             if (parameters.Length < 2 || parameters.Length > 3)
             {
-                throw new ArityException("if", 2, 3, parameters.Length);
+                throw new ArityException(name, 2, 3, parameters.Length);
             }
             
             ISExp result;
@@ -71,7 +71,7 @@ namespace Atmosphere.SexyLib
         {            
             if (parameters.Length != 1)
             {
-                throw new ArityException("not", 1, parameters.Length);
+                throw new ArityException(name, 1, parameters.Length);
             }
 
             ISExp result;

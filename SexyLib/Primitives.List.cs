@@ -21,10 +21,10 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Car(string name, params ISExp[] parameters)
         {
-            CheckArity("car", 1, parameters);
+            CheckArity(name, 1, parameters);
 
             // Note that IsPair returns false for the empty list
-            CheckType(IsPair, "car", 0, "pair", parameters[0]);
+            CheckType(IsPair, name, 0, "pair", parameters[0]);
 
             Pair pair = parameters[0] as Pair;
             
@@ -33,10 +33,10 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Cdr(string name, params ISExp[] parameters)
         {
-            CheckArity("cdr", 1, parameters);
+            CheckArity(name, 1, parameters);
 
             // Note that IsPair returns false for the empty list
-            CheckType(IsPair, "cdr", 0, "pair", parameters[0]);
+            CheckType(IsPair, name, 0, "pair", parameters[0]);
             
             Pair list = parameters[0] as Pair;
             
@@ -45,7 +45,7 @@ namespace Atmosphere.SexyLib
 
         public static ISExp Cons(string name, params ISExp[] parameters)
         {
-            CheckArity("cons", 2, parameters);
+            CheckArity(name, 2, parameters);
 
             return Pair.Cons(parameters[0], parameters[1]);
         }
