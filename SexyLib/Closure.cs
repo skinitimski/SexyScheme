@@ -47,7 +47,17 @@ namespace Atmosphere.SexyLib
 
         public void AddSymbolDefinition(string symbol, ISExp sexp)
         {
+            if (sexp.IsSymbol())
+            {
+                sexp = Resolve(((string)((Atom)sexp).Value));
+            }
+
             Map.Add(symbol, sexp);
+        }
+
+        public void RemoveSymbolDefinition(string symbol)
+        {
+            Map.Remove(symbol);
         }
 
         public void Define(string symbol, ISExp sexp)

@@ -62,7 +62,7 @@ namespace Atmosphere.SexyLib
 //        {
 //        }
 
-        public static bool IsPair(ISExp sexp)
+        public static bool IsPair(this ISExp sexp)
         {
             bool isPair = false;
 
@@ -77,47 +77,47 @@ namespace Atmosphere.SexyLib
             return isPair;
         }
         
-        public static bool IsNumber(ISExp sexp)
+        public static bool IsNumber(this ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.DOUBLE, AtomType.LONG);
         }
         
-        public static bool IsLong(ISExp sexp)
+        public static bool IsLong(this ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.LONG);
         }
         
-        public static bool IsDouble(ISExp sexp)
+        public static bool IsDouble(this ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.DOUBLE);
         }
         
-        public static bool IsBoolean(ISExp sexp)
+        public static bool IsBoolean(this ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.BOOLEAN);
         }
         
-        public static bool IsChar(ISExp sexp)
+        public static bool IsChar(this ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.CHAR);
         }
         
-        public static bool IsString(ISExp sexp)
+        public static bool IsString(this ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.STRING);
         }
         
-        public static bool IsSymbol(ISExp sexp)
+        public static bool IsSymbol(this ISExp sexp)
         {
             return IsOneOf(sexp, AtomType.SYMBOL);
         }
         
-        public static bool IsText(ISExp sexp)
+        public static bool IsText(this ISExp sexp)
         {
             return IsString(sexp) || IsSymbol(sexp) || IsNumber(sexp);
         }
 
-        public static bool IsOneOf(ISExp sexp, params AtomType[] types)
+        public static bool IsOneOf(this ISExp sexp, params AtomType[] types)
         {
             bool isOneOf = false;
             
@@ -134,12 +134,12 @@ namespace Atmosphere.SexyLib
             return isOneOf;
         }
         
-        public static bool IsTrue(ISExp sexp)
+        public static bool IsTrue(this ISExp sexp)
         {
             return !IsFalse(sexp);
         }
         
-        public static bool IsFalse(ISExp sexp)
+        public static bool IsFalse(this ISExp sexp)
         {
             // Everything is true except the boolean value false (#f)
             
