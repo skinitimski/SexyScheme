@@ -14,6 +14,9 @@ namespace Atmosphere.SexyInterpreter
 {
     public class SexyInterpreter
     {
+        private bool verbose;
+
+
         public SexyInterpreter()
         {
         }
@@ -74,7 +77,17 @@ namespace Atmosphere.SexyInterpreter
                     }
                     catch (SexySchemeException e)
                     {
-                        Console.WriteLine(e.ToString());
+                        if (verbose)
+                        {
+                            Console.WriteLine(e.ToString());
+                        }
+                        else
+                        {
+                            Console.WriteLine("error: " + e.Message);
+                        }
+
+                        index = sexpString.Length;
+
                         continue;
                     }
 
