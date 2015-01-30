@@ -22,19 +22,7 @@ namespace Atmosphere.SexyLib
             _body = body.ToArray();
         }
 
-//        public ISExp Invoke(Closure closure, params ISExp[] parameters)
-//        {
-//            Closure local = GenerateClosure(closure, parameters);
-//
-//            return EvaluateBody(local);
-//        }
-
         public abstract Closure GenerateClosure(Closure parent, params ISExp[] parameters);
-
-//        private ISExp EvaluateBody(Closure closure)
-//        {
-//            return _body[_body.Length - 1].Eval(closure);
-//        }
 
         public override abstract string ToString();
 
