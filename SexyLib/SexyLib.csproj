@@ -70,6 +70,9 @@
     <Compile Include="Primitives.Data.cs" />
     <Compile Include="Primitive.cs" />
     <Compile Include="Primitives.cs" />
+    <Compile Include="Exceptions\CommandNotFoundException.cs" />
+    <Compile Include="Primitives.Shell.cs" />
+    <Compile Include="Exceptions\BadArgumentException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

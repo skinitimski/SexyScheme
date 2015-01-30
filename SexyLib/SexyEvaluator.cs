@@ -63,6 +63,10 @@ namespace Atmosphere.SexyLib
             AddPrimitive("cons", Primitives.Cons);
             //AddPrimitive("list", Primitives.List);
             
+            AddPrimitive("pwd", Primitives.Pwd);
+            AddPrimitive("cd", Primitives.Cd);
+            AddPrimitive("exec", Primitives.Exec);
+
             AddPrimitive("write", Primitives.Write);
             AddPrimitive("display", Primitives.Display);
             AddPrimitive("newline", Primitives.Newline);

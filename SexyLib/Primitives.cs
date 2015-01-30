@@ -18,6 +18,9 @@ namespace Atmosphere.SexyLib
             }
         }
 
+        /// <summary>
+        /// Asserts that the number of parameters exactly equals the <paramref name="expectedCount" />.
+        /// </summary>
         private static void CheckArity(string functionName, int expectedCount, params ISExp[] parameters)
         {
             if (parameters.Length != expectedCount)
@@ -26,6 +29,9 @@ namespace Atmosphere.SexyLib
             }
         }
 
+        /// <summary>
+        /// Asserts that the number of parameters falls between the <paramref name="minArgumentCount" /> and <paramref name="maxArgumentCount" />, inclusively.
+        /// </summary>
         private static void CheckArity(string functionName, int minArgumentCount, int maxArgumentCount, params ISExp[] parameters)
         {
             if (parameters.Length < minArgumentCount || parameters.Length > maxArgumentCount)
@@ -34,6 +40,9 @@ namespace Atmosphere.SexyLib
             }
         }
 
+        /// <summary>
+        /// Asserts that the type of the given <paramref name="parameter" /> matches the type asserted by the given <paramref name="checker" /> function.
+        /// </summary>
         private static void CheckType(Predicate<ISExp> checker, string functionName, int index, string expectedType, ISExp parameter)
         {
             if (!checker(parameter))
@@ -103,6 +112,11 @@ namespace Atmosphere.SexyLib
             return IsOneOf(sexp, AtomType.SYMBOL);
         }
         
+        public static bool IsText(ISExp sexp)
+        {
+            return IsString(sexp) || IsSymbol(sexp) || IsNumber(sexp) || IsBoolean(sexp);
+        }
+
         public static bool IsOneOf(ISExp sexp, params AtomType[] types)
         {
             bool isOneOf = false;
