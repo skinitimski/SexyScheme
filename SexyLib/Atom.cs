@@ -250,6 +250,17 @@ namespace Atmosphere.SexyLib
                 case AtomType.NONE:
                     rep = "#<void>";
                     break;
+                    
+                case AtomType.BOOLEAN:
+                    if ((bool)Value)
+                    {
+                        rep = "#t";
+                    }
+                    else
+                    {
+                        rep = "#f";
+                    }
+                    break;
 
                 case AtomType.CHAR:
                 case AtomType.STRING:
