@@ -36,6 +36,8 @@ namespace Atmosphere.SexyLib
 //            return _body[_body.Length - 1].Eval(closure);
 //        }
 
+        public override abstract string ToString();
+
 
         protected String BodyRepresentation { get { return Body.Select(x => x.ToString()).Aggregate((x, y) => x + " " + y); } }
 
