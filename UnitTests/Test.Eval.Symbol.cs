@@ -19,6 +19,9 @@ namespace Atmosphere.UnitTests
         public void TestEvalSymbol()
         {
             Atom orig, evaluated;
+
+            Evaluator.Closure.AddSymbolDefinition("true", Atom.True);
+            Evaluator.Closure.AddSymbolDefinition("false", Atom.False);
             
             
             orig = new Atom("true", AtomType.SYMBOL);
