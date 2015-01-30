@@ -100,6 +100,11 @@ namespace Atmosphere.SexyLib
 
             return elements;
         }
+
+        public ISExp[] ToArray()
+        {
+            return ToList().ToArray();
+        }
         
         public override string ToString()
         {

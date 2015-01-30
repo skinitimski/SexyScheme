@@ -191,21 +191,31 @@ namespace Atmosphere.SexyLib
         public static ISExp Exec(string name, params ISExp[] parameters)
         {
             CheckEnoughArguements(name, 1, parameters);
-            
+
+            string cmd;
+            string[] arguments;
+
+            if (parameters.Length == 1 && IsPair(parameters[0]))
+            {
+                parameters = ((Pair)parameters[0]).ToArray();
+            }
+
+
             for (int i = 0; i < parameters.Length; i++)
             {
                 CheckType(IsText, name, i, "text", parameters);
             }
             
-            string[] arguments = new string[parameters.Length - 1];
+            arguments = new string[parameters.Length - 1];
             
             for (int i = 1; i < parameters.Length; i++)
             {
                 arguments[i - 1] = ((Atom)parameters[i]).ToDisplay();
             }
             
-            string cmd = ((Atom)parameters[0]).ToDisplay();
-            
+            cmd = ((Atom)parameters[0]).ToDisplay();
+           
+
             if (!File.Exists(Path.Combine(Directory.GetCurrentDirectory(), cmd)))
             {
                 bool success = false;
