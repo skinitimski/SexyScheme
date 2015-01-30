@@ -7,7 +7,7 @@ namespace Atmosphere.SexyLib
 {
     public static partial class Primitives
     {        
-
+        [PrimitiveMethod("write")]
         public static ISExp Write(string name, params ISExp[] parameters)
         {
             CheckArity(name, 1, parameters);
@@ -16,7 +16,8 @@ namespace Atmosphere.SexyLib
             
             return Atom.Null;
         }
-
+        
+        [PrimitiveMethod("display")]
         public static ISExp Display(string name, params ISExp[] parameters)
         {
             CheckArity(name, 1, parameters);
@@ -25,7 +26,8 @@ namespace Atmosphere.SexyLib
             
             return Atom.Null;
         }
-
+        
+        [PrimitiveMethod("newline")]
         public static ISExp Newline(string name, params ISExp[] parameters)
         {
             CheckArity(name, 0, parameters);
@@ -34,7 +36,8 @@ namespace Atmosphere.SexyLib
 
             return Atom.Null;
         }
-
+        
+        [PrimitiveMethod("exit")]
         public static ISExp Exit(string name, params ISExp[] parameters)
         {
             CheckArity(name, 0, 1, parameters);

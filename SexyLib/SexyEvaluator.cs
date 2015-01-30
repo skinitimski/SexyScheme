@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 using Atmosphere.Extensions;
@@ -31,46 +32,16 @@ namespace Atmosphere.SexyLib
 
         private void AddPrimitives()
         {            
-            Closure.AddSymbolDefinition("true", Atom.True);
-            Closure.AddSymbolDefinition("false", Atom.False);
+            IEnumerable<MethodInfo> methods = typeof(Primitives).GetMethods().Where(m => m.GetCustomAttributes(typeof(PrimitiveMethod), false).Length > 0);
 
-            AddPrimitive("if", Primitives.If);
-            AddPrimitive("and", Primitives.And);
-            AddPrimitive("or", Primitives.Or);
-            AddPrimitive("not", Primitives.Not);
-            
-            //AddPrimitive("list?", Primitives.ListP);
-            AddPrimitive("pair?", Primitives.PairP);
-            AddPrimitive("boolean?", Primitives.BooleanP);
-            AddPrimitive("char?", Primitives.CharP);
-            AddPrimitive("string?", Primitives.StringP);
-            AddPrimitive("symbol?", Primitives.SymbolP);
-            AddPrimitive("number?", Primitives.NumberP);
-            AddPrimitive("integer?", Primitives.IntegerP);
-                        
-            AddPrimitive("symbol->string", Primitives.SymbolToString);
-            AddPrimitive("long->string", Primitives.LongToString);
-            AddPrimitive("double->string", Primitives.DoubleToString);
-            
-            AddPrimitive("+", Primitives.Add);             
-            AddPrimitive("-", Primitives.Subtract);        
-            AddPrimitive("*", Primitives.Multiply);        
-            AddPrimitive("/", Primitives.Divide);
-            AddPrimitive("modulo", Primitives.Modulo);
-            AddPrimitive("expt", Primitives.Exponent);
-            AddPrimitive("car", Primitives.Car);
-            AddPrimitive("cdr", Primitives.Cdr);
-            AddPrimitive("cons", Primitives.Cons);
-            //AddPrimitive("list", Primitives.List);
-            
-            AddPrimitive("pwd", Primitives.Pwd);
-            AddPrimitive("cd", Primitives.Cd);
-            AddPrimitive("exec", Primitives.Exec);
+            foreach (MethodInfo method in methods)
+            {
+                SexyFunction function = (SexyFunction)Delegate.CreateDelegate(typeof(SexyFunction), method);
 
-            AddPrimitive("write", Primitives.Write);
-            AddPrimitive("display", Primitives.Display);
-            AddPrimitive("newline", Primitives.Newline);
-            AddPrimitive("exit", Primitives.Exit);
+                PrimitiveMethod attribute = (PrimitiveMethod)method.GetCustomAttributes(typeof(PrimitiveMethod), false)[0];
+
+                AddPrimitive(attribute.Name, function);
+            }
         }
 
         private void AddPrimitive(string symbol, SexyFunction primitive)

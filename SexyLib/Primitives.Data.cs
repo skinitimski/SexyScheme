@@ -7,11 +7,12 @@ namespace Atmosphere.SexyLib
 {
     public static partial class Primitives
     {        
+        [PrimitiveMethod("symbol->string")]
         public static ISExp SymbolToString(string name, params ISExp[] parameters)
         {
             CheckArity(name, 1, parameters);
             
-            CheckType(IsSymbol, name, 0, "symbol", parameters[0]);
+            CheckType(IsSymbol, name, 0, "symbol", parameters);
             
             Atom symbol = parameters[0] as Atom;
             
@@ -20,11 +21,12 @@ namespace Atmosphere.SexyLib
             return @string;
         }
         
+        [PrimitiveMethod("long->string")]
         public static ISExp LongToString(string name, params ISExp[] parameters)
         {
             CheckArity(name, 1, parameters);
             
-            CheckType(IsLong, name, 0, "long", parameters[0]);
+            CheckType(IsLong, name, 0, "long", parameters);
             
             Atom @long = parameters[0] as Atom;
             
@@ -32,12 +34,13 @@ namespace Atmosphere.SexyLib
             
             return @string;
         }
-        
+
+        [PrimitiveMethod("double->string")]
         public static ISExp DoubleToString(string name, params ISExp[] parameters)
         {
             CheckArity(name, 1, parameters);
             
-            CheckType(IsDouble, name, 0, "double", parameters[0]);
+            CheckType(IsDouble, name, 0, "double", parameters);
             
             Atom @double = parameters[0] as Atom;
             

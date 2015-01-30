@@ -73,6 +73,9 @@
     <Compile Include="Exceptions\CommandNotFoundException.cs" />
     <Compile Include="Primitives.Shell.cs" />
     <Compile Include="Exceptions\BadArgumentException.cs" />
+    <Compile Include="Exceptions\DirectoryException.cs" />
+    <Compile Include="Exceptions\UnsupportedOperationException.cs" />
+    <Compile Include="PrimitiveMethod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

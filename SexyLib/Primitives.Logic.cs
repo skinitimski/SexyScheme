@@ -7,12 +7,10 @@ namespace Atmosphere.SexyLib
 {
     public static partial class Primitives
     {        
+        [PrimitiveMethod("if")]
         public static ISExp If(string name, params ISExp[] parameters)
         {
-            if (parameters.Length < 2 || parameters.Length > 3)
-            {
-                throw new ArityException(name, 2, 3, parameters.Length);
-            }
+            CheckArity(name, 2, 3, parameters);
             
             ISExp result;
             
@@ -35,6 +33,7 @@ namespace Atmosphere.SexyLib
             return result;
         }
         
+        [PrimitiveMethod("and")]
         public static ISExp And(string name, params ISExp[] parameters)
         {            
             ISExp result;
@@ -51,6 +50,7 @@ namespace Atmosphere.SexyLib
             return result;
         }
         
+        [PrimitiveMethod("or")]
         public static ISExp Or(string name, params ISExp[] parameters)
         {            
             ISExp result;
@@ -67,12 +67,10 @@ namespace Atmosphere.SexyLib
             return result;
         }
         
+        [PrimitiveMethod("not")]
         public static ISExp Not(string name, params ISExp[] parameters)
         {            
-            if (parameters.Length != 1)
-            {
-                throw new ArityException(name, 1, parameters.Length);
-            }
+            CheckArity(name, 1, parameters);
 
             ISExp result;
             
@@ -87,10 +85,6 @@ namespace Atmosphere.SexyLib
             
             return result;
         }
-
-
-
-
     }
 }
 

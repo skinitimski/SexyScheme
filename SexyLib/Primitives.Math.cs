@@ -43,7 +43,7 @@ namespace Atmosphere.SexyLib
             
             for (int i = 0; i < parameters.Length; i++)
             {      
-                CheckType(IsNumber, functionName, i, "number", parameters[i]);
+                CheckType(IsNumber, functionName, i, "number", parameters);
                 
                 Atom atom = parameters[i] as Atom;
                 
@@ -79,7 +79,7 @@ namespace Atmosphere.SexyLib
             
             for (int i = 0; i < parameters.Length; i++)
             {
-                CheckType(IsNumber, functionName, i, "number", parameters[i]);
+                CheckType(IsNumber, functionName, i, "number", parameters);
                 
                 Atom atom = parameters[i] as Atom;
                 
@@ -122,22 +122,26 @@ namespace Atmosphere.SexyLib
 
 
 
-
+        
+        [PrimitiveMethod("+")]
         public static ISExp Add(string name, params ISExp[] parameters)
         {
             return AdditiveMath(Addition, name, 0, parameters);
         }
         
+        [PrimitiveMethod("*")]
         public static ISExp Multiply(string name, params ISExp[] parameters)
         {
             return AdditiveMath(Multiplication, name, 1, parameters);
         }
         
+        [PrimitiveMethod("-")]
         public static ISExp Subtract(string name, params ISExp[] parameters)
         {
             return SubtractiveMath(Subtraction, name, 0, parameters);
         }
         
+        [PrimitiveMethod("/")]
         public static ISExp Divide(string name, params ISExp[] parameters)
         {
             return SubtractiveMath(Division, name, 1, parameters);
@@ -148,7 +152,8 @@ namespace Atmosphere.SexyLib
 
 
 
-
+        
+        [PrimitiveMethod("modulo")]
         public static ISExp Modulo(string name, params ISExp[] parameters)
         {
             // We could in theory support non-integer modulo, since C# supports it.
@@ -158,7 +163,7 @@ namespace Atmosphere.SexyLib
                                                
             for (int i = 0; i < parameters.Length; i++)
             {
-                CheckType(IsLong, name, i, "integer", parameters[i]);               
+                CheckType(IsLong, name, i, "integer", parameters);               
             }
                 
             long dividend = ((Atom)parameters[0]).GetValueAsLong();
@@ -207,14 +212,15 @@ namespace Atmosphere.SexyLib
         }
 
 
-
+        
+        [PrimitiveMethod("expt")]
         public static ISExp Exponent(string name, params ISExp[] parameters)
         {
             CheckArity(name, 2, parameters);
                        
             for (int i = 0; i < parameters.Length; i++)
             {
-                CheckType(IsNumber, name, i, "number", parameters[i]);
+                CheckType(IsNumber, name, i, "number", parameters);
             }
 
             bool floating = IsDouble(parameters[0]) || IsDouble(parameters[1]);

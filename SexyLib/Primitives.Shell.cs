@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.IO;
@@ -9,22 +10,61 @@ using Atmosphere.Extensions;
 namespace Atmosphere.SexyLib
 {
     public static partial class Primitives
-    {                
-        public static Atom RETURN_CODE_0 = Atom.CreateLong(0);
-        public static Atom RETURN_CODE_1 = Atom.CreateLong(1);
+    {   
+        #region Directory helpers
 
+        private static Stack<string> DirectoryStack = new Stack<string>();
+
+        private static Pair GetDirectoriesInStack()
+        {
+            Pair stack = Pair.List(DirectoryStack.Select(x => Atom.CreateString(x)).ToArray());
+            
+            stack = Pair.Cons(Atom.CreateString(Directory.GetCurrentDirectory()), stack);
+            
+            return stack;
+        }
+        
+        private static void ValidateDirectory(string dir)
+        {
+            if (!Directory.Exists(dir))
+            {
+                throw new BadArgumentException("existing directory", dir);
+            }
+        }
+
+        private static void SetCurrentDirectory(string dir)
+        {
+            try
+            {
+                Directory.SetCurrentDirectory(dir);
+            }
+            catch (Exception e)
+            {
+                throw new DirectoryException("Couldn't set current directory: {0}", e.Message);
+            }
+        }
+
+        #endregion Directory helpers
+        
+
+
+
+
+
+
+
+        [@PrimitiveMethod("pwd")]
         public static ISExp Pwd(string name, params ISExp[] parameters)
         {
             CheckArity(name, 0, parameters);
             
             return Atom.CreateString(Directory.GetCurrentDirectory());
         }
-
+        
+        [@PrimitiveMethod("cd")]
         public static ISExp Cd(string name, params ISExp[] parameters)
         {
             CheckArity(name, 0, 2, parameters);
-
-            Atom retCode = RETURN_CODE_0;
 
             string targetDir = null;
 
@@ -34,14 +74,9 @@ namespace Atmosphere.SexyLib
             }
             else
             {
-                CheckType(IsText, name, 1, "text", parameters[1]);
+                CheckType(IsText, name, 0, "text", parameters);
 
-                targetDir = ((Atom)parameters[1]).ToDisplay();
-
-                if (Path.GetInvalidPathChars().Any(x => targetDir.Contains(x)))
-                {
-                    throw new BadArgumentException("valid path string", targetDir);
-                }
+                targetDir = ((Atom)parameters[0]).ToDisplay();
             }
 
             if (parameters.Length == 2)
@@ -49,25 +84,117 @@ namespace Atmosphere.SexyLib
                 // follow symbolic links?
             }
 
-            try
-            {
-                Directory.SetCurrentDirectory(targetDir);
-            }
-            catch (Exception e)
-            {
-                retCode = RETURN_CODE_1;
-            }
+            ValidateDirectory(targetDir);
 
-            return retCode;
+            SetCurrentDirectory(targetDir);
+                        
+            return Atom.CreateString(Directory.GetCurrentDirectory());
         }
 
+        
+        [@PrimitiveMethod("pushd")]
+        public static ISExp Pushd(string name, params ISExp[] parameters)
+        {
+            CheckArity(name, 0, 1, parameters);
+
+
+            if (parameters.Length == 0)
+            {
+                if (DirectoryStack.Count < 1)
+                {
+                    throw new UndefinedOperationException("Cannot rotate top of directory stack; no other directories", DirectoryStack.Count);
+                }
+
+                string dir0 = Directory.GetCurrentDirectory();
+                string dir1 = DirectoryStack.Pop();
+
+                DirectoryStack.Push(dir0);
+
+                Directory.SetCurrentDirectory(dir1);
+            }
+            else
+            {
+                ISExp arg = parameters[0];
+
+                if (IsString(arg) || IsSymbol(arg))
+                {
+                    string dir = (String)((Atom)arg).Value;
+
+                    ValidateDirectory(dir);
+
+                    DirectoryStack.Push(Directory.GetCurrentDirectory());
+                    
+                    SetCurrentDirectory(dir);
+                }
+                else if (IsLong(parameters[0]))
+                {
+                    throw new UnsupportedOperationException("Rotating the directory stack by N is not yet supported.");
+                }
+                else
+                {
+                    throw new UnexpectedTypeException(name, 0, "string, symbol, or integer", arg);
+                }
+            }
+            
+            return GetDirectoriesInStack();
+        }
+        
+        [@PrimitiveMethod("popd")]
+        public static ISExp Popd(string name, params ISExp[] parameters)
+        {
+            CheckArity(name, 0, 1, parameters);
+
+            if (parameters.Length == 0)
+            {
+                if (DirectoryStack.Count < 1)
+                {
+                    throw new UndefinedOperationException("Cannot pop; stack is empty");
+                }
+
+                string dir = DirectoryStack.Pop();
+                
+                SetCurrentDirectory(dir);
+            }
+            else
+            {
+                ISExp arg = parameters[0];
+
+                if (IsLong(parameters[0]))
+                {
+                    throw new UnsupportedOperationException("Popping a specific directory off of the stack is not yet supported.");
+                }
+                else
+                {
+                    throw new UnexpectedTypeException(name, 0, "integer", arg);
+                }
+            }
+            
+            return GetDirectoriesInStack();
+        }
+        
+        [@PrimitiveMethod("dirs")]
+        public static ISExp Dirs(string name, params ISExp[] parameters)
+        {
+            CheckArity(name, 0, parameters);
+
+            return GetDirectoriesInStack();
+        }
+
+
+
+
+
+
+
+        
+        [@PrimitiveMethod("exec")]
         public static ISExp Exec(string name, params ISExp[] parameters)
         {
             CheckEnoughArguements(name, 1, parameters);
             
             for (int i = 0; i < parameters.Length; i++)
             {
-                CheckType(IsText, name, i, "text", parameters[i]);
+                CheckType(IsText, name, i, "text", parameters);
             }
             
             string[] arguments = new string[parameters.Length - 1];
@@ -102,7 +229,7 @@ namespace Atmosphere.SexyLib
                     throw new Exceptions.FileNotFoundException("Could not exec {0}; not found in current directory nor PATH", cmd);
                 }
             }
-            
+
             Process process = new Process{
                 StartInfo = new ProcessStartInfo
                 {

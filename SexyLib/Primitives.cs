@@ -43,11 +43,11 @@ namespace Atmosphere.SexyLib
         /// <summary>
         /// Asserts that the type of the given <paramref name="parameter" /> matches the type asserted by the given <paramref name="checker" /> function.
         /// </summary>
-        private static void CheckType(Predicate<ISExp> checker, string functionName, int index, string expectedType, ISExp parameter)
+        private static void CheckType(Predicate<ISExp> checker, string functionName, int index, string expectedType, ISExp[] parameters)
         {
-            if (!checker(parameter))
+            if (!checker(parameters[index]))
             {
-                throw new UnexpectedTypeException(functionName, index, expectedType, parameter);
+                throw new UnexpectedTypeException(functionName, index, expectedType, parameters[index]);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Atmosphere.SexyLib
         
         public static bool IsText(ISExp sexp)
         {
-            return IsString(sexp) || IsSymbol(sexp) || IsNumber(sexp) || IsBoolean(sexp);
+            return IsString(sexp) || IsSymbol(sexp) || IsNumber(sexp);
         }
 
         public static bool IsOneOf(ISExp sexp, params AtomType[] types)
