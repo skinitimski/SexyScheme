@@ -81,7 +81,7 @@ namespace Atmosphere.UnitTests
         public void TestEvalListLambdaVariable()
         {       
             ISExp orig, evaluated;
-            
+
             
             orig = SexyParser.Parse("((lambda x (car x)) 1)");
             evaluated = Evaluator.Eval(orig);
@@ -111,6 +111,22 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.AreEqual(3, (long)((Atom)evaluated).Value);
+        }
+
+        [Test]
+        public void TestEvalListLambda()
+        {
+            ISExp orig, evaluated;
+
+            Evaluator.Closure.AddSymbolDefinition("x", Pair.List(Atom.CreateSymbol("a"), Atom.CreateLong(2), Atom.CreateString("c")));
+                        
+            orig = SexyParser.Parse("((lambda (y) (car y)) x)");
+
+            Console.WriteLine(orig.ToDisplay());
+
+            evaluated = Evaluator.Eval(orig);
+
+            Evaluator.Closure.RemoveSymbolDefinition("x");
         }
     }
 }
