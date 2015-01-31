@@ -25,7 +25,7 @@ namespace Atmosphere.SexyInterpreter
         {
             Evaluator = new SexyEvaluator();
 
-            foreach (string resourceFilename in new[] { "Sexy.Utilities.scm" })
+            foreach (string resourceFilename in new[] { "Sexy.Utilities.scm", "Sexy.Shell.scm" })
             {
                 string code = null;
 

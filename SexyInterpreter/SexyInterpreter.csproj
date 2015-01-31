@@ -53,5 +53,8 @@
     <EmbeddedResource Include="Sexy.Utilities.scm">
       <LogicalName>Sexy.Utilities.scm</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sexy.Shell.scm">
+      <LogicalName>Sexy.Shell.scm</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
