@@ -297,6 +297,58 @@ namespace Atmosphere.UnitTests
             orig = SexyParser.Parse("(pair? #\\t)");
             evaluated = Evaluator.Eval(orig);
             Assert.IsFalse((bool)((Atom)evaluated).Value);   
-        }     
+        }    
+
+        [Test]
+        public void TestListP()
+        {
+            ISExp orig, evaluated;
+
+
+            
+            orig = SexyParser.Parse("(list? ())");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsTrue((bool)((Atom)evaluated).Value);
+
+
+            orig = SexyParser.Parse("(list? (cons 1 2))");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsFalse((bool)((Atom)evaluated).Value);   
+
+
+            orig = SexyParser.Parse("(list? (quote (1 2)))");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsTrue((bool)((Atom)evaluated).Value);    
+
+
+            orig = SexyParser.Parse("(list? 1)");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsFalse((bool)((Atom)evaluated).Value);      
+            
+            
+            orig = SexyParser.Parse("(list? 0.1)");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsFalse((bool)((Atom)evaluated).Value);     
+            
+            
+            orig = SexyParser.Parse("(list? \"a\")");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsFalse((bool)((Atom)evaluated).Value);    
+            
+            
+            orig = SexyParser.Parse("(list? #\\f)");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsFalse((bool)((Atom)evaluated).Value);  
+            
+            
+            orig = SexyParser.Parse("(list? #f)");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsFalse((bool)((Atom)evaluated).Value);    
+            
+            
+            orig = SexyParser.Parse("(list? #\\t)");
+            evaluated = Evaluator.Eval(orig);
+            Assert.IsFalse((bool)((Atom)evaluated).Value);  
+        }
     }
 }

@@ -76,6 +76,20 @@ namespace Atmosphere.SexyLib
 
             return isPair;
         }
+
+        public static bool IsList(this ISExp sexp)
+        {
+            bool isList = false;
+
+            Pair pair = sexp as Pair;
+
+            if (pair != null)
+            {
+                isList = pair.IsProper;
+            }
+
+            return isList;
+        }
         
         public static bool IsNumber(this ISExp sexp)
         {

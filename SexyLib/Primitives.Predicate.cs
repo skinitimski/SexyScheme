@@ -11,8 +11,16 @@ namespace Atmosphere.SexyLib
         public static ISExp PairP(string name, params ISExp[] parameters)
         {
             CheckArity(name, 1, parameters);
-                    
+            
             return Atom.CreateBoolean(IsPair(parameters[0]));
+        }  
+
+        [PrimitiveMethod("list?")]
+        public static ISExp ListP(string name, params ISExp[] parameters)
+        {
+            CheckArity(name, 1, parameters);
+            
+            return Atom.CreateBoolean(IsList(parameters[0]));
         }
         
         [PrimitiveMethod("boolean?")]

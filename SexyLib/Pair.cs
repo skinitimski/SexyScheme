@@ -160,5 +160,19 @@ namespace Atmosphere.SexyLib
         public bool IsAtom { get { return false; } }
 
         public bool IsEmpty { get { return this.Equals(Pair.Empty); } }
+
+        public bool IsProper
+        { 
+            get
+            {
+                if (IsEmpty) return true;
+
+                Pair cdr = Cdr as Pair;
+
+                if (cdr == null) return false;
+
+                return cdr.IsProper;
+            }
+        }
     }
 }
