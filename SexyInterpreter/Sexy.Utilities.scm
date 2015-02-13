@@ -2,6 +2,7 @@
 ; booleans
 (define true #t)
 (define false #f)
+(define empty ())
 
 ; combined forms
 (define cadr (lambda (x) (car (cdr x))))
