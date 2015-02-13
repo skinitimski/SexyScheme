@@ -19,6 +19,33 @@ namespace Atmosphere.SexyLib
 //            return list;
 //        }
 
+        [PrimitiveMethod("length")]
+        public static ISExp Length(string name, params ISExp[] parameters)
+        {
+            Pair pair = parameters[0] as Pair;
+
+            if (pair == null)
+            {
+                throw new UnexpectedTypeException(name, 0, "proper list", parameters[0]);
+            }
+
+            int length = 0;
+
+            while (!pair.IsEmpty)
+            {
+                length++;
+
+                pair = pair.Cdr as Pair;
+
+                if (pair == null)
+                {
+                    throw new UnexpectedTypeException(name, 0, "proper list", parameters[0]);
+                }
+            }
+
+            return Atom.CreateLong(length);
+        }
+
         [PrimitiveMethod("car")]
         public static ISExp Car(string name, params ISExp[] parameters)
         {

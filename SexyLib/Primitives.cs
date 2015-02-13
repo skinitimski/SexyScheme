@@ -57,10 +57,7 @@ namespace Atmosphere.SexyLib
 
 
 
-        
-//        public static bool IsList(ISExp sexp)
-//        {
-//        }
+
 
         public static bool IsPair(this ISExp sexp)
         {

@@ -159,7 +159,7 @@ namespace Atmosphere.SexyLib
 
         public bool IsAtom { get { return false; } }
 
-        public bool IsEmpty { get { return this.Equals(Pair.Empty); } }
+        public bool IsEmpty { get { return Object.ReferenceEquals(this, Pair.Empty); } }
 
         public bool IsProper
         { 

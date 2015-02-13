@@ -16,6 +16,34 @@ namespace Atmosphere.UnitTests
     public partial class TestPrimitives
     {
         [Test]
+        public void TestLengthFail()
+        {
+            Assert.Throws<UnexpectedTypeException>(() => Evaluator.Eval(SexyParser.Parse("(length 1)")));
+            Assert.Throws<UnexpectedTypeException>(() => Evaluator.Eval(SexyParser.Parse("(length (cons 1 2))")));
+        }   
+        
+        [Test]
+        public void TestLength()
+        {
+            ISExp orig, evaluated;   
+            
+            
+            orig = SexyParser.Parse("(length ())");
+            evaluated = Evaluator.Eval(orig);
+            Assert.AreEqual(0, (long)((Atom)evaluated).Value); 
+            
+            
+            orig = SexyParser.Parse("(length (cons 1 ()))");
+            evaluated = Evaluator.Eval(orig);
+            Assert.AreEqual(1, (long)((Atom)evaluated).Value);      
+            
+            
+            orig = SexyParser.Parse("(length (cons 1 (cons 2 ())))");
+            evaluated = Evaluator.Eval(orig);
+            Assert.AreEqual(2, (long)((Atom)evaluated).Value);      
+        }   
+
+        [Test]
         public void TestCarFail()
         {
             Assert.Throws<ArityException>(() => Evaluator.Eval(SexyParser.Parse("(car)")));
