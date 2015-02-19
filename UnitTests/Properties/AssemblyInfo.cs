@@ -17,10 +17,10 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfigurationAttribute("")]
 [assembly: AssemblyCompanyAttribute("Midnight Computers")]
 [assembly: AssemblyProductAttribute("")]
-[assembly: AssemblyCopyrightAttribute("Copyright (c) 2014, Midnight Computers")]
+[assembly: AssemblyCopyrightAttribute("Copyright (c) 2015, Midnight Computers")]
 [assembly: AssemblyTrademarkAttribute("")]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("1.0.0.419")]
+[assembly: AssemblyVersionAttribute("1.0.0.485")]
 [assembly: AssemblyDelaySignAttribute(false)]
 [assembly: AssemblyKeyNameAttribute("")]
 
