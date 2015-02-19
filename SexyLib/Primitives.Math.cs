@@ -35,6 +35,7 @@ namespace Atmosphere.SexyLib
 
         #region Abstractions
 
+        /*
         private static ISExp AdditiveMath(Func<double, double, double> arithmetic, string functionName, double baseValue, params ISExp[] parameters)
         {
             double value = baseValue;
@@ -114,7 +115,8 @@ namespace Atmosphere.SexyLib
             
             return result;
         }
-
+        
+        */
 
         #endregion Abstractions
 
@@ -132,6 +134,8 @@ namespace Atmosphere.SexyLib
         [PrimitiveMethod("*")]
         public static ISExp Multiply(string name, params ISExp[] parameters)
         {
+            CheckEnoughArguements(name, 1, parameters);
+
             return AdditiveMath(Multiplication, name, 1, parameters);
         }
         
@@ -144,6 +148,8 @@ namespace Atmosphere.SexyLib
         [PrimitiveMethod("/")]
         public static ISExp Divide(string name, params ISExp[] parameters)
         {
+            CheckEnoughArguements(name, 1, parameters);
+
             return SubtractiveMath(Division, name, 1, parameters);
         }
 
@@ -151,7 +157,7 @@ namespace Atmosphere.SexyLib
 
 
 
-
+        /*
         
         [PrimitiveMethod("modulo")]
         public static ISExp Modulo(string name, params ISExp[] parameters)
@@ -246,6 +252,7 @@ namespace Atmosphere.SexyLib
             return result;
         }
 
+        */
 
 
     }

@@ -90,17 +90,7 @@ namespace Atmosphere.SexyLib
         
         public static bool IsNumber(this ISExp sexp)
         {
-            return IsOneOf(sexp, AtomType.DOUBLE, AtomType.LONG);
-        }
-        
-        public static bool IsLong(this ISExp sexp)
-        {
-            return IsOneOf(sexp, AtomType.LONG);
-        }
-        
-        public static bool IsDouble(this ISExp sexp)
-        {
-            return IsOneOf(sexp, AtomType.DOUBLE);
+            return IsOneOf(sexp, AtomType.NUMBER);
         }
         
         public static bool IsBoolean(this ISExp sexp)
@@ -125,7 +115,7 @@ namespace Atmosphere.SexyLib
         
         public static bool IsText(this ISExp sexp)
         {
-            return IsString(sexp) || IsSymbol(sexp) || IsNumber(sexp);
+            return IsOneOf(sexp, AtomType.STRING, AtomType.SYMBOL, AtomType.NUMBER);
         }
 
         public static bool IsOneOf(this ISExp sexp, params AtomType[] types)
