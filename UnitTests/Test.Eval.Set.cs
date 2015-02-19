@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Atmosphere.Extensions;
 using Atmosphere.SexyLib;
 using Atmosphere.SexyLib.Exceptions;
+using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.UnitTests
 {
@@ -32,7 +33,7 @@ namespace Atmosphere.UnitTests
             sexp = Evaluator.Eval(SexyParser.Parse("(set! x 2)"));
             
             Assert.AreEqual(Atom.Null, sexp);           
-            Assert.AreEqual(2L, (long)((Atom)Evaluator.Closure.Resolve("x")).Value);
+            Assert.AreEqual(2L, (Integer)((Atom)Evaluator.Closure.Resolve("x")).Value);
             
             
             sexp = Evaluator.Eval(SexyParser.Parse("(set! x \"string\")"));            

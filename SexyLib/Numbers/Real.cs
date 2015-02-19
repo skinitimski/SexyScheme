@@ -309,7 +309,7 @@ namespace Atmosphere.SexyLib.Numbers
 
         public override string ToString()
         {
-            return string.Concat(Mantissa.ToString(), "E", Exponent);
+            return string.Concat(Mantissa.ToString(), "e", Exponent);
         }
         
         public bool Equals(Real other)

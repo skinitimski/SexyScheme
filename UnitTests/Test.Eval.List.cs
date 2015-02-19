@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Atmosphere.Extensions;
 using Atmosphere.SexyLib;
 using Atmosphere.SexyLib.Exceptions;
+using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.UnitTests
 {
@@ -25,7 +26,7 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(3L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(3L, (Integer)((Atom)evaluated).Value);
             
             
             
@@ -33,7 +34,7 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(3L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(3L, (Integer)((Atom)evaluated).Value);
         }
         
         [Test]
@@ -44,7 +45,7 @@ namespace Atmosphere.UnitTests
             orig = SexyParser.Parse("(- 1 2)");
             evaluated = Evaluator.Eval(orig);
 
-            Assert.AreEqual(-1L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(-1L, (Integer)((Atom)evaluated).Value);
         }
         
         [Test]
@@ -68,13 +69,13 @@ namespace Atmosphere.UnitTests
             orig = SexyParser.Parse("((lambda (x) x) 1)");
             evaluated = Evaluator.Eval(orig);
            
-            Assert.AreEqual(1, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(1, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("((lambda (x y) (+ x y)) 1 2)");
             evaluated = Evaluator.Eval(orig);
             
-            Assert.AreEqual(3, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(3, (Integer)((Atom)evaluated).Value);
         }
         
         [Test]
@@ -86,13 +87,13 @@ namespace Atmosphere.UnitTests
             orig = SexyParser.Parse("((lambda x (car x)) 1)");
             evaluated = Evaluator.Eval(orig);
             
-            Assert.AreEqual(1, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(1, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("((lambda x (car (cdr x))) 1 2)");
             evaluated = Evaluator.Eval(orig);
             
-            Assert.AreEqual(2, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(2, (Integer)((Atom)evaluated).Value);
         }
         
         [Test]
@@ -104,13 +105,13 @@ namespace Atmosphere.UnitTests
             orig = SexyParser.Parse("((lambda (x . y) (car y)) 1 2)");
             evaluated = Evaluator.Eval(orig);
             
-            Assert.AreEqual(2, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(2, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("((lambda (x y . z) (car z)) 1 2 3)");
             evaluated = Evaluator.Eval(orig);
             
-            Assert.AreEqual(3, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(3, (Integer)((Atom)evaluated).Value);
         }
 
         [Test]

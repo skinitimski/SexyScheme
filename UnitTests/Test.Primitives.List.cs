@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Atmosphere.Extensions;
 using Atmosphere.SexyLib;
 using Atmosphere.SexyLib.Exceptions;
+using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.UnitTests
 {
@@ -30,17 +31,17 @@ namespace Atmosphere.UnitTests
             
             orig = SexyParser.Parse("(length ())");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(0, (long)((Atom)evaluated).Value); 
+            Assert.AreEqual(0, (Integer)((Atom)evaluated).Value); 
             
             
             orig = SexyParser.Parse("(length (cons 1 ()))");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1, (long)((Atom)evaluated).Value);      
+            Assert.AreEqual(1, (Integer)((Atom)evaluated).Value);      
             
             
             orig = SexyParser.Parse("(length (cons 1 (cons 2 ())))");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(2, (long)((Atom)evaluated).Value);      
+            Assert.AreEqual(2, (Integer)((Atom)evaluated).Value);      
         }   
 
         [Test]
@@ -60,7 +61,7 @@ namespace Atmosphere.UnitTests
             
             orig = SexyParser.Parse("(car (cons 1 ()))");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1, (long)((Atom)evaluated).Value);      
+            Assert.AreEqual(1, (Integer)((Atom)evaluated).Value);      
         }     
         
         
@@ -101,14 +102,14 @@ namespace Atmosphere.UnitTests
             
             orig = SexyParser.Parse("(cons 1 ())");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1, (long)((Atom)((Pair)evaluated).Car).Value);
+            Assert.AreEqual(1, (Integer)((Atom)((Pair)evaluated).Car).Value);
             Assert.AreEqual(Pair.Empty, ((Pair)evaluated).Cdr);
             
             
             orig = SexyParser.Parse("(cons 1 2)");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1, (long)((Atom)((Pair)evaluated).Car).Value);
-            Assert.AreEqual(2, (long)((Atom)((Pair)evaluated).Cdr).Value);
+            Assert.AreEqual(1, (Integer)((Atom)((Pair)evaluated).Car).Value);
+            Assert.AreEqual(2, (Integer)((Atom)((Pair)evaluated).Cdr).Value);
         }   
         
 //        //[Test]
@@ -120,10 +121,10 @@ namespace Atmosphere.UnitTests
 //            orig = SexyParser.Parse("(list 4 5 6)");
 //            evaluated = Evaluator.Eval(orig);
 //            Assert.AreEqual(3, ((SexyList)evaluated).Count);  
-//            Assert.AreEqual(4, (long)((Atom)((SexyList)evaluated).Car).Value);
-//            Assert.AreEqual(4, (long)((Atom)((SexyList)evaluated).GetAt(0)).Value);
-//            Assert.AreEqual(5, (long)((Atom)((SexyList)evaluated).GetAt(1)).Value);
-//            Assert.AreEqual(6, (long)((Atom)((SexyList)evaluated).GetAt(2)).Value);
+//            Assert.AreEqual(4, (Integer)((Atom)((SexyList)evaluated).Car).Value);
+//            Assert.AreEqual(4, (Integer)((Atom)((SexyList)evaluated).GetAt(0)).Value);
+//            Assert.AreEqual(5, (Integer)((Atom)((SexyList)evaluated).GetAt(1)).Value);
+//            Assert.AreEqual(6, (Integer)((Atom)((SexyList)evaluated).GetAt(2)).Value);
 //        }     
     }
 }

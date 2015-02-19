@@ -6,6 +6,7 @@ using System.Text;
 using Atmosphere.Extensions;
 
 using Atmosphere.SexyLib.Exceptions;
+using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.SexyLib
 {
@@ -305,7 +306,7 @@ namespace Atmosphere.SexyLib
                 }
                 else
                 {
-                    long l = Int64.Parse(sb.ToString());
+                    Integer l = Integer.Parse(sb.ToString());
 
                     atom = Atom.CreateLong(l);
                 }

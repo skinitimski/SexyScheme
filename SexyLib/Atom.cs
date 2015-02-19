@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Atmosphere.SexyLib.Exceptions;
+using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.SexyLib
 {
@@ -68,7 +69,7 @@ namespace Atmosphere.SexyLib
             return atom;
         }
 
-        public static Atom CreateLong(long @long)
+        public static Atom CreateLong(Integer @long)
         {
             return new Atom(@long, AtomType.LONG);
         }
@@ -324,6 +325,11 @@ namespace Atmosphere.SexyLib
             }
             
             return ret;
+        }
+
+        public override int GetHashCode()
+        {
+            return (Value.GetHashCode() * 149) ^ Type.GetHashCode();
         }
 
         public bool IsAtom { get { return true; } }

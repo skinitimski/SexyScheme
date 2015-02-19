@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Atmosphere.Extensions;
 using Atmosphere.SexyLib;
 using Atmosphere.SexyLib.Exceptions;
+using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.UnitTests
 {
@@ -25,27 +26,27 @@ namespace Atmosphere.UnitTests
             
             orig = SexyParser.Parse("(if #f 1 0)");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);    
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);    
             
             
             orig = SexyParser.Parse("(if #t 1 0)");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);  
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);  
             
             
             orig = SexyParser.Parse("(if 50 1 0)");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value); 
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value); 
             
             
             orig = SexyParser.Parse("(if \"a\" 1 0)");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);    
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);    
             
             
             orig = SexyParser.Parse("(if (if #t #t #f) 1 0)");
             evaluated = Evaluator.Eval(orig);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);    
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);    
         }     
         
         #endregion If

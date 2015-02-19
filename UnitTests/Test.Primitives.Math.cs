@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Atmosphere.Extensions;
 using Atmosphere.SexyLib;
 using Atmosphere.SexyLib.Exceptions;
+using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.UnitTests
 {
@@ -33,42 +34,42 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(+ 1)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(+ 1 2)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(3L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(3L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(+ 1 2 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-1L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(-1L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(+ 1 2 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-1L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(-1L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(+ (+ 1 2) 1 (+ -1) -2 (+ 2 2))");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(5, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(5, (Integer)((Atom)evaluated).Value);
         }
         
         [Test]
@@ -140,42 +141,42 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(1, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(1, (Integer)((Atom)evaluated).Value);         
 
             
             orig = SexyParser.Parse("(- 1)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-1, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(-1, (Integer)((Atom)evaluated).Value);         
                         
             
             orig = SexyParser.Parse("(- 1 2)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-1L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(-1L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(- 1 2 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(3L, (long)((Atom)evaluated).Value);     
+            Assert.AreEqual(3L, (Integer)((Atom)evaluated).Value);     
             
             
             orig = SexyParser.Parse("(- 1 1)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(- 1 1 -2)");
             evaluated = Evaluator.Eval(orig);
 
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(2L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(2L, (Integer)((Atom)evaluated).Value);
 
 
 
@@ -193,7 +194,7 @@ namespace Atmosphere.UnitTests
                 evaluated = Evaluator.Eval(orig);
 
                 Assert.IsTrue(evaluated.IsAtom);
-                AssertCloseEnough(result, (long)((Atom)evaluated).Value);
+                Assert.AreEqual(result, (Integer)((Atom)evaluated).Value);
             }
         }
         
@@ -284,35 +285,35 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(* 2)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(2L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(2L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(* 3 2)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(6L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(6L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(* 1 2 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-8L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(-8L, (Integer)((Atom)evaluated).Value);
             
             
             orig = SexyParser.Parse("(* (* 1 2) 1 (* -1) -2 (* 2 2))");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(16L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(16L, (Integer)((Atom)evaluated).Value);
         }
         
         [Test]
@@ -385,28 +386,28 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(/ -1)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-1L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(-1L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(/ 27 3 3)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(3L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(3L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(/ 4 -2)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-2L, (long)((Atom)evaluated).Value);     
+            Assert.AreEqual(-2L, (Integer)((Atom)evaluated).Value);     
             
             
             
@@ -422,7 +423,7 @@ namespace Atmosphere.UnitTests
                 evaluated = Evaluator.Eval(orig);
                 
                 Assert.IsTrue(evaluated.IsAtom);
-                Assert.AreEqual(result, (long)((Atom)evaluated).Value);
+                Assert.AreEqual(result, (Integer)((Atom)evaluated).Value);
             }
         }
         
@@ -518,34 +519,34 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);    
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);    
             
             orig = SexyParser.Parse("(modulo 12 4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo 13 4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo 14 4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(2L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(2L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo 15 4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(3L, (long)((Atom)evaluated).Value);     
+            Assert.AreEqual(3L, (Integer)((Atom)evaluated).Value);     
 
 
             // Negative divisor
@@ -554,28 +555,28 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo 13 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-3L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(-3L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo 14 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-2L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(-2L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo 15 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-1L, (long)((Atom)evaluated).Value);  
+            Assert.AreEqual(-1L, (Integer)((Atom)evaluated).Value);  
             
             
             // Negative dividend
@@ -584,28 +585,28 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo -13 4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(3L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(3L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo -14 4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(2L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(2L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo -15 4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(1L, (long)((Atom)evaluated).Value);  
+            Assert.AreEqual(1L, (Integer)((Atom)evaluated).Value);  
             
             
             // Negative everything!
@@ -614,28 +615,28 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(0L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(0L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo -13 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-1L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(-1L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo -14 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-2L, (long)((Atom)evaluated).Value);         
+            Assert.AreEqual(-2L, (Integer)((Atom)evaluated).Value);         
             
             
             orig = SexyParser.Parse("(modulo -15 -4)");
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-3L, (long)((Atom)evaluated).Value);        
+            Assert.AreEqual(-3L, (Integer)((Atom)evaluated).Value);        
         }
         
         #endregion Modulo
@@ -664,7 +665,7 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(8L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(8L, (Integer)((Atom)evaluated).Value);
 
 
             
@@ -679,7 +680,7 @@ namespace Atmosphere.UnitTests
             evaluated = Evaluator.Eval(orig);
             
             Assert.IsTrue(evaluated.IsAtom);
-            Assert.AreEqual(-8L, (long)((Atom)evaluated).Value);
+            Assert.AreEqual(-8L, (Integer)((Atom)evaluated).Value);
 
             
             orig = SexyParser.Parse("(expt -2 -3)");
