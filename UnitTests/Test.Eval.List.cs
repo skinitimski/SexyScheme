@@ -50,7 +50,7 @@ namespace Atmosphere.UnitTests
         [Test]
         public void TestEvalListLambdaFail()
         {       
-            Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(Pair.Cons(Atom.KeywordLambda, new Atom(1, AtomType.LONG))));
+            Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(Pair.Cons(Atom.KeywordLambda, Atom.CreateLong(1))));
             Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(SexyParser.Parse("(lambda)")));
             Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(SexyParser.Parse("(lambda x)")));
             Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(SexyParser.Parse("(lambda (x))")));

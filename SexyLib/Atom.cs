@@ -30,8 +30,7 @@ namespace Atmosphere.SexyLib
 
         }
 
-        [Obsolete]
-        public Atom(object value, AtomType type)
+        internal Atom(object value, AtomType type)
         {
             Value = value;
             Type = type;

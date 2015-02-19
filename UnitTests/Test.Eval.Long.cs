@@ -21,7 +21,7 @@ namespace Atmosphere.UnitTests
             Atom orig, evaluated;
 
             
-            orig = new Atom(1056234987L, AtomType.LONG);
+            orig = Atom.CreateLong(1056234987L);
             evaluated = (Atom)Evaluator.Eval(orig);
             
             Assert.AreSame(orig, evaluated);

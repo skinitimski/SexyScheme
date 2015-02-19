@@ -24,7 +24,7 @@ namespace Atmosphere.UnitTests
             Evaluator.Closure.AddSymbolDefinition("false", Atom.False);
             
             
-            orig = new Atom("true", AtomType.SYMBOL);
+            orig = Atom.CreateSymbol("true");
             evaluated = (Atom)Evaluator.Eval(orig);
             
             Assert.AreNotSame(orig, evaluated);
@@ -32,7 +32,7 @@ namespace Atmosphere.UnitTests
             Assert.AreEqual(true, (bool)evaluated.Value);
             
             
-            orig = new Atom("false", AtomType.SYMBOL);
+            orig = Atom.CreateSymbol("false");
             evaluated = (Atom)Evaluator.Eval(orig);
             
             Assert.AreNotSame(orig, evaluated);

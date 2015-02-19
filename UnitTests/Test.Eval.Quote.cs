@@ -18,7 +18,7 @@ namespace Atmosphere.UnitTests
         [Test]
         public void TestEvalQuoteFail()
         {
-            Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(Pair.Cons(new Atom("quote", AtomType.SYMBOL), new Atom(1, AtomType.LONG))));
+            Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(Pair.Cons(Atom.CreateSymbol("quote"), Atom.CreateLong(1))));
             Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(SexyParser.Parse("(quote)")));
             Assert.Throws<BadSyntaxException>(() => Evaluator.Eval(SexyParser.Parse("(quote 1 2)")));
         }

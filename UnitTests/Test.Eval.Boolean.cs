@@ -21,7 +21,7 @@ namespace Atmosphere.UnitTests
             Atom orig, evaluated;
 
 
-            orig = new Atom(true, AtomType.BOOLEAN);
+            orig = Atom.True;
             evaluated = (Atom)Evaluator.Eval(orig);
             
             Assert.AreSame(orig, evaluated);
@@ -29,7 +29,7 @@ namespace Atmosphere.UnitTests
             Assert.IsTrue((bool)(evaluated.Value));
             
             
-            orig = new Atom(false, AtomType.BOOLEAN);
+            orig = Atom.False;
             evaluated = (Atom)Evaluator.Eval(orig);
             
             Assert.AreSame(orig, evaluated);
