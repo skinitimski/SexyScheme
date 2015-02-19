@@ -47,7 +47,7 @@ namespace Atmosphere.UnitTests
                 new ParseCommentTestCase
                 {
                     Input = "\"String; not comment\"",
-                    ExpectedValue = new Atom("String; not comment", AtomType.STRING),
+                    ExpectedValue = Atom.CreateString("String; not comment"),
                     ExpectedEndIndex = 21
                 },
             };

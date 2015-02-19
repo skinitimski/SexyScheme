@@ -22,21 +22,21 @@ namespace Atmosphere.UnitTests
 
 
 
-            atom1 = new Atom(true, AtomType.BOOLEAN);            
+            atom1 = Atom.True;           
 
             Assert.IsFalse(atom1.Equals(null));
             Assert.IsFalse(atom1.Equals(true));
             Assert.IsTrue(atom1.Equals(atom1));
 
-            atom2 = new Atom("string", AtomType.STRING);
+            atom2 = Atom.CreateString("string");
 
             Assert.IsFalse(atom1.Equals(atom2));
             
-            atom2 = new Atom(false, AtomType.BOOLEAN);
+            atom2 = Atom.False;
             
             Assert.IsFalse(atom1.Equals(atom2));
             
-            atom2 = new Atom(true, AtomType.BOOLEAN);
+            atom2 = Atom.True;
             
             Assert.IsTrue(atom1.Equals(atom2));
 

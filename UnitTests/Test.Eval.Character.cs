@@ -21,7 +21,7 @@ namespace Atmosphere.UnitTests
             Atom orig, evaluated;
 
 
-            orig = new Atom('t', AtomType.CHAR);
+            orig = Atom.CreateChar('t');
             evaluated = (Atom)Evaluator.Eval(orig);
             
             Assert.AreSame(orig, evaluated);
@@ -30,7 +30,7 @@ namespace Atmosphere.UnitTests
 
 
             
-            orig = new Atom(' ', AtomType.CHAR);
+            orig = Atom.CreateChar(' ');
             evaluated = (Atom)Evaluator.Eval(orig);
             
             Assert.AreSame(orig, evaluated);

@@ -26,7 +26,7 @@ namespace Atmosphere.UnitTests
         {
             ISExp sexp;
 
-            Evaluator.Closure.AddSymbolDefinition("x", new Atom(1L, AtomType.LONG));    
+            Evaluator.Closure.AddSymbolDefinition("x", Atom.CreateLong(1L));    
             
             
             sexp = Evaluator.Eval(SexyParser.Parse("(set! x 2)"));
