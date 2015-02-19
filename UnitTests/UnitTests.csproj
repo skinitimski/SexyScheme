@@ -37,6 +37,7 @@
     <Reference Include="Extensions">
       <HintPath>..\..\releases\Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test.Primitives.Math.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Test.Eval.Quote.cs" />
     <Compile Include="Test.Eval.Set.cs" />
     <Compile Include="Test.Parse.Comment.cs" />
+    <Compile Include="Test.Number.Real.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

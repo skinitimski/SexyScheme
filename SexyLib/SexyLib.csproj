@@ -34,6 +34,7 @@
       <HintPath>..\..\releases\Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,9 +77,14 @@
     <Compile Include="Exceptions\DirectoryException.cs" />
     <Compile Include="Exceptions\UnsupportedOperationException.cs" />
     <Compile Include="PrimitiveMethod.cs" />
+    <Compile Include="Numbers\Integer.cs" />
+    <Compile Include="Exceptions\SexySchemeImplementationException.cs" />
+    <Compile Include="Numbers\Real.cs" />
+    <Compile Include="Numbers\Rational.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Numbers\" />
   </ItemGroup>
 </Project>
