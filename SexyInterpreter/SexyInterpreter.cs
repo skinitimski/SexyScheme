@@ -61,6 +61,8 @@ namespace Atmosphere.SexyInterpreter
                 
                 string sexpString = Console.ReadLine();
 
+                sexpString = new String(sexpString.Where(c => !Char.IsControl(c)).ToArray());
+
                 Console.WriteLine(sexpString);
 
                 int index = 0;
