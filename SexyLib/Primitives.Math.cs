@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Atmosphere.SexyLib.Exceptions;
@@ -7,116 +8,47 @@ namespace Atmosphere.SexyLib
 {
     public static partial class Primitives
     {
-        #region Helper Routines
-
-        private static double Addition(double a, double b)
-        {
-            return a + b;
-        }
-
-        private static double Subtraction(double a, double b)
-        {
-            return a - b;
-        }
-
-        private static double Multiplication(double a, double b)
-        {
-            return a * b;
-        }
-
-        private static double Division(double a, double b)
-        {
-            return a / b;
-        }
-
-        #endregion Helper Routines
-
-
-
         #region Abstractions
 
-        /*
-        private static ISExp AdditiveMath(Func<double, double, double> arithmetic, string functionName, double baseValue, params ISExp[] parameters)
+
+        private static ISExp AdditiveMath(Func<Number, Number, Number> arithmetic, string functionName, Number baseValue, params ISExp[] parameters)
         {
-            double value = baseValue;
+            Number value = baseValue;
+
+            for (int i = 0; i < parameters.Length; i++)
+            {      
+                Number number = (Number)((Atom)parameters[i]).Value;
+
+                value = arithmetic(value, number);
+            }
             
-            bool floating = false;
+            return Atom.CreateNumber(value);
+        }
+            
+        public static ISExp SubtractiveMath(Func<Number, Number, Number> arithmetic, string functionName, Number baseValue, params ISExp[] parameters)
+        {
+            Number value = baseValue;
             
             for (int i = 0; i < parameters.Length; i++)
             {      
-                CheckType(IsNumber, functionName, i, "number", parameters);
-                
-                Atom atom = parameters[i] as Atom;
-                
-                if (!floating && atom.Type == AtomType.DOUBLE)
-                {
-                    floating = true;
-                }
+                Number number = (Number)((Atom)parameters[i]).Value;
 
-                value = arithmetic(value, atom.GetValueAsDouble());
-            }
-
-            Atom result;
-            
-            if (floating)
-            {
-                result = Atom.CreateDouble(value);
-            }
-            else
-            {
-                result = Atom.CreateLong((long)value);
-            }
-            
-            return result;
-        }
-                
-        public static ISExp SubtractiveMath(Func<double, double, double> arithmetic, string functionName, double baseValue, params ISExp[] parameters)
-        {
-            CheckEnoughArguements(functionName, 1, parameters);
-            
-            double value = baseValue;
-            
-            bool floating = false;
-            
-            for (int i = 0; i < parameters.Length; i++)
-            {
-                CheckType(IsNumber, functionName, i, "number", parameters);
-                
-                Atom atom = parameters[i] as Atom;
-                
-                if (!floating && atom.Type == AtomType.DOUBLE)
-                {
-                    floating = true;
-                }
-                
                 if (i == 0 && parameters.Length != 1)
                 {
                     // If we have multiple values, use the first value (this one) 
                     // as the base without flipping its sign
                     
-                    value = atom.GetValueAsDouble();
+                    value = number;
                 }
                 else
                 {
-                    value = arithmetic(value, atom.GetValueAsDouble());
+                    value = arithmetic(value, number);
                 }
             }
             
-            Atom result;
-            
-            if (floating)
-            {
-                result = Atom.CreateDouble(value);
-            }
-            else
-            {
-                result = Atom.CreateLong((long)value);
-            }
-            
-            return result;
+            return Atom.CreateNumber(value);
         }
-        
-        */
+
 
         #endregion Abstractions
 
@@ -128,29 +60,37 @@ namespace Atmosphere.SexyLib
         [PrimitiveMethod("+")]
         public static ISExp Add(string name, params ISExp[] parameters)
         {
-            return AdditiveMath(Addition, name, 0, parameters);
+            CheckAllTypes(IsNumber, name, "number", parameters);
+
+            return AdditiveMath(Number.Add, name, Number.Zero, parameters);
         }
         
         [PrimitiveMethod("*")]
         public static ISExp Multiply(string name, params ISExp[] parameters)
         {
-            CheckEnoughArguements(name, 1, parameters);
+            CheckAllTypes(IsNumber, name, "number", parameters);
 
-            return AdditiveMath(Multiplication, name, 1, parameters);
+            return AdditiveMath(Number.Multiply, name, Number.One, parameters);
         }
         
         [PrimitiveMethod("-")]
         public static ISExp Subtract(string name, params ISExp[] parameters)
         {
-            return SubtractiveMath(Subtraction, name, 0, parameters);
+            CheckEnoughArguements(name, 1, parameters);
+
+            CheckAllTypes(IsNumber, name, "number", parameters);
+
+            return SubtractiveMath(Number.Subtract, name, Number.Zero, parameters);
         }
         
         [PrimitiveMethod("/")]
         public static ISExp Divide(string name, params ISExp[] parameters)
         {
             CheckEnoughArguements(name, 1, parameters);
+            
+            CheckAllTypes(IsNumber, name, "number", parameters);
 
-            return SubtractiveMath(Division, name, 1, parameters);
+            return SubtractiveMath(Number.Divide, name, Number.One, parameters);
         }
 
 

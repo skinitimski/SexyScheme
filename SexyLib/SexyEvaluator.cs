@@ -85,8 +85,7 @@ namespace Atmosphere.SexyLib
             {
                 case AtomType.BOOLEAN:
                 case AtomType.CHAR:
-                case AtomType.DOUBLE:
-                case AtomType.LONG:
+                case AtomType.NUMBER:
                 case AtomType.LAMBDA:
                 case AtomType.PRIMITIVE:
                 case AtomType.STRING:

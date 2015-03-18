@@ -72,7 +72,7 @@ namespace Atmosphere.SexyLib
 
             if (IsNumber(parameters[0]))
             {
-                Number number = (Number)((Atom)parameters[0]);
+                Number number = (Number)((Atom)parameters[0]).Value;
                 
                 if (number.IsComplex) result = Atom.True;
             }
@@ -89,7 +89,7 @@ namespace Atmosphere.SexyLib
 
             if (IsNumber(parameters[0]))
             {
-                Number number = (Number)((Atom)parameters[0]);
+                Number number = (Number)((Atom)parameters[0]).Value;
                 
                 if (number.IsReal) result = Atom.True;
             }
@@ -106,7 +106,7 @@ namespace Atmosphere.SexyLib
 
             if (IsNumber(parameters[0]))
             {
-                Number number = (Number)((Atom)parameters[0]);
+                Number number = (Number)((Atom)parameters[0]).Value;
                 
                 if (number.IsRational) result = Atom.True;
             }
@@ -123,7 +123,7 @@ namespace Atmosphere.SexyLib
             
             if (IsNumber(parameters[0]))
             {
-                Number number = (Number)((Atom)parameters[0]);
+                Number number = (Number)((Atom)parameters[0]).Value;
                 
                 if (number.IsInteger) result = Atom.True;
             }
@@ -142,7 +142,7 @@ namespace Atmosphere.SexyLib
             
             if (IsNumber(parameters[0]))
             {
-                Number number = (Number)((Atom)parameters[0]);
+                Number number = (Number)((Atom)parameters[0]).Value;
                 
                 if (number.IsExact) result = Atom.True;
             }

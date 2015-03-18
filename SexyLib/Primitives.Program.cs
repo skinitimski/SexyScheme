@@ -49,12 +49,17 @@ namespace Atmosphere.SexyLib
             }
             else
             {
-                if (!IsLong(parameters[0]))
+                CheckType(IsNumber, name, 0, "integer", parameters);
+
+                Number code = (Number)((Atom)parameters[0]).Value;
+
+                if (!code.IsInteger)
                 {
                     throw new UnexpectedTypeException(name, 0, "integer", parameters[0]);
                 }
 
-                Environment.Exit((int)(long)((Atom)parameters[0]).Value);
+                Environment.Exit((int)code);
+
                 return Atom.Null;
             }
         }

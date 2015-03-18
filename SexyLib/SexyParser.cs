@@ -6,7 +6,6 @@ using System.Text;
 using Atmosphere.Extensions;
 
 using Atmosphere.SexyLib.Exceptions;
-using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.SexyLib
 {
@@ -23,8 +22,6 @@ namespace Atmosphere.SexyLib
         
         /// <summary>String containing only those numeral characters which can be at the start of a numeral</summary>
         private const string NUMERALS_START = "+-.0123456789";
-        /// <summary>String containing only those numeral characters which indicate a float</summary>
-        private const string NUMERALS_FLOAT = ".eE";
 
         
         /// <summary>String containing only those numeral characters which can be at the start of a numeral</summary>
@@ -130,7 +127,7 @@ namespace Atmosphere.SexyLib
                     return ParseNumber(sexp, ref index);
                     
                 case Token.HASH:
-                    return ParseCharOrBoolean(sexp, ref index);
+                    return ParseHashRepresentation(sexp, ref index);
                     
                 case Token.QUOTE:
                     return ParseQuote(sexp, ref index);
@@ -267,9 +264,6 @@ namespace Atmosphere.SexyLib
                 throw new SexyParserException("Numeral start character expected at index {0}.", index);
 
             StringBuilder sb = new StringBuilder();
-
-            // Could be a leading "." which would identify this as a float(/double)
-            bool floating = NUMERALS_FLOAT.IndexOf(sexp[index]) != -1;
             
             sb.Append(sexp[index]);                
             
@@ -277,11 +271,7 @@ namespace Atmosphere.SexyLib
             {                
                 char c = sexp[index];
                 
-                if (NUMERALS.IndexOf(c) == -1)
-                    break;
-                
-                if (NUMERALS_FLOAT.IndexOf(c) != -1)
-                    floating = true;
+                if (NUMERALS.IndexOf(c) == -1) break;
                 
                 sb.Append(c);
             }
@@ -295,21 +285,12 @@ namespace Atmosphere.SexyLib
                 atom = Atom.CreateSymbol(value);   
             }
             else
-            {           
+            {   
                 // TODO: overflow on 32-bit integers?
             
-                if (floating)
-                {
-                    double d = Double.Parse(sb.ToString());
+                Number number = Number.Parse(sb.ToString());
 
-                    atom = Atom.CreateDouble(d);
-                }
-                else
-                {
-                    Integer l = Integer.Parse(sb.ToString());
-
-                    atom = Atom.CreateLong(l);
-                }
+                atom = Atom.CreateNumber(number);
             }
 
             return atom;
@@ -433,7 +414,7 @@ namespace Atmosphere.SexyLib
             return Atom.CreateSymbol(value);
         }
 
-        private static ISExp ParseCharOrBoolean(string sexp, ref int index)
+        private static ISExp ParseHashRepresentation(string sexp, ref int index)
         {
             if (PeekToken(sexp, index) != Token.HASH)
                 throw new SexyParserException("Char or boolean expected at index {0}", index);

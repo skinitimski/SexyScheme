@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 
 using Atmosphere.SexyLib.Exceptions;
-using Atmosphere.SexyLib.Numbers;
 
 namespace Atmosphere.SexyLib
 {
@@ -69,14 +68,9 @@ namespace Atmosphere.SexyLib
             return atom;
         }
 
-        public static Atom CreateLong(Integer @long)
+        public static Atom CreateNumber(Number number)
         {
-            return new Atom(@long, AtomType.LONG);
-        }
-
-        public static Atom CreateDouble(double @double)
-        {
-            return new Atom(@double, AtomType.DOUBLE);
+            return new Atom(number, AtomType.NUMBER);
         }
 
         public static Atom CreateBoolean(bool boolean)
@@ -88,7 +82,7 @@ namespace Atmosphere.SexyLib
         {
             return new Atom(character, AtomType.CHAR);
         }
-        
+
         public static Atom CreateString(string @string)
         {
             return new Atom(@string, AtomType.STRING);
@@ -219,8 +213,7 @@ namespace Atmosphere.SexyLib
                     break;
                     
                 case AtomType.LAMBDA:
-                case AtomType.DOUBLE:
-                case AtomType.LONG:
+                case AtomType.NUMBER:
                 case AtomType.SYMBOL:
                     rep = Value.ToString().ToLower();
                     break;
@@ -268,8 +261,7 @@ namespace Atmosphere.SexyLib
                     break;
 
                 case AtomType.LAMBDA:
-                case AtomType.DOUBLE:
-                case AtomType.LONG:
+                case AtomType.NUMBER:
                 case AtomType.SYMBOL:
                     rep = Value.ToString().ToLower();
                     break;
@@ -288,43 +280,6 @@ namespace Atmosphere.SexyLib
             }
             
             return rep;
-        }
-
-        
-        public long GetValueAsLong()
-        {
-            long ret = 0L;
-            
-            if (Type == AtomType.LONG)
-            {
-                ret = (long)Value;
-            }
-            else
-            {
-                throw new WrongTypeException(typeof(long), Value.GetType());
-            }
-            
-            return ret;
-        }
-        
-        public double GetValueAsDouble()
-        {
-            double ret = 0.0D;
-            
-            if (Type == AtomType.LONG)
-            {
-                ret = (long)Value;
-            }
-            else if (Type == AtomType.DOUBLE)
-            {
-                ret = (double)Value;
-            }
-            else
-            {
-                throw new WrongTypeException(typeof(double), Value.GetType());
-            }
-            
-            return ret;
         }
 
         public override int GetHashCode()

@@ -43,7 +43,7 @@ namespace Atmosphere.SexyLib
                 }
             }
 
-            return Atom.CreateLong(length);
+            return Atom.CreateNumber(length);
         }
 
         [PrimitiveMethod("car")]

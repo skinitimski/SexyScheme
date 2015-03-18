@@ -126,7 +126,7 @@ namespace Atmosphere.SexyLib
                     
                     SetCurrentDirectory(dir);
                 }
-                else if (IsLong(parameters[0]))
+                else if (IsNumber(parameters[0]))
                 {
                     throw new UnsupportedOperationException("Rotating the directory stack by N is not yet supported.");
                 }
@@ -159,7 +159,7 @@ namespace Atmosphere.SexyLib
             {
                 ISExp arg = parameters[0];
 
-                if (IsLong(parameters[0]))
+                if (IsNumber(parameters[0]))
                 {
                     throw new UnsupportedOperationException("Popping a specific directory off of the stack is not yet supported.");
                 }

@@ -39,7 +39,7 @@ namespace Atmosphere.SexyLib
                 throw new ArityException(functionName, minArgumentCount, maxArgumentCount, parameters.Length);
             }
         }
-
+        
         /// <summary>
         /// Asserts that the type of the given <paramref name="parameter" /> matches the type asserted by the given <paramref name="checker" /> function.
         /// </summary>
@@ -48,6 +48,20 @@ namespace Atmosphere.SexyLib
             if (!checker(parameters[index]))
             {
                 throw new UnexpectedTypeException(functionName, index, expectedType, parameters[index]);
+            }
+        }
+        
+        /// <summary>
+        /// Asserts that the type of the given <paramref name="parameter" /> matches the type asserted by the given <paramref name="checker" /> function.
+        /// </summary>
+        private static void CheckAllTypes(Predicate<ISExp> checker, string functionName, string expectedType, ISExp[] parameters)
+        {
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                if (!checker(parameters[i]))
+                {
+                    throw new UnexpectedTypeException(functionName, i, expectedType, parameters[i]);
+                }
             }
         }
 
