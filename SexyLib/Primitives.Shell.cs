@@ -52,7 +52,34 @@ namespace Atmosphere.SexyLib
 
 
 
+        
+        [@PrimitiveMethod("list-files")]
+        public static ISExp ListFiles(string name, params ISExp[] parameters)
+        {
+            CheckArity(name, 0, 1, parameters);
 
+            string dir = Directory.GetCurrentDirectory();
+
+            if (parameters.Length > 0)
+            {
+                ISExp arg = parameters[0];
+                
+                if (IsString(arg) || IsSymbol(arg))
+                {
+                    dir = (String)((Atom)arg).Value;
+                }
+            }
+
+            ISExp fileList = Pair.Empty;
+
+            foreach (string file in Directory.GetFiles(dir))
+            {
+                fileList = Pair.Cons(Atom.CreateString(file), fileList);
+            }
+            
+            return fileList;
+        }
+        
         [@PrimitiveMethod("pwd")]
         public static ISExp Pwd(string name, params ISExp[] parameters)
         {
