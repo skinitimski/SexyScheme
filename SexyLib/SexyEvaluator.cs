@@ -123,6 +123,9 @@ namespace Atmosphere.SexyLib
             {
                 return list;
             }
+
+            // Shouldn't we evaluate the car before trying to figure out how to evaluate
+            //    the rest of the list?
                             
             if (list.Car.IsAtom)
             {
@@ -175,18 +178,13 @@ namespace Atmosphere.SexyLib
                 argsList.Add(pair.Car);
             } 
             
-            ISExp[] args = argsList.ToArray();
+            ISExp[] args = argsList.Select(a => Eval(a, closure, depth)).ToArray();
             
             ISExp result = default(ISExp);
+
             
             if (proc.Type == AtomType.PRIMITIVE)
-            {
-                // Need to evaluate each argument before passing.
-                for (int i = 0; i < args.Length; i++)
-                {
-                    args[i] = Eval(args[i], closure, depth);
-                }
-                
+            {                
                 result = ((Primitive)proc.Value).Invoke(args);
             }
             else // proc.Type == AtomType.LAMBDA
