@@ -76,6 +76,8 @@
     <Compile Include="Exceptions\DirectoryException.cs" />
     <Compile Include="Exceptions\UnsupportedOperationException.cs" />
     <Compile Include="PrimitiveMethod.cs" />
+    <Compile Include="Primitives.IO.cs" />
+    <Compile Include="Primitives.Regex.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

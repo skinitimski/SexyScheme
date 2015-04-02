@@ -73,6 +73,9 @@
     <Compile Include="Test.Eval.Quote.cs" />
     <Compile Include="Test.Eval.Set.cs" />
     <Compile Include="Test.Parse.Comment.cs" />
+    <Compile Include="Test.Primitives.Regex.cs" />
+    <Compile Include="Test.Primitives.IO.cs" />
+    <Compile Include="Test.Primitives.Shell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -84,5 +87,18 @@
       <Project>{B85A9FB2-DDC5-45E0-BD15-90EE79CFFD0F}</Project>
       <Name>SexyLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestData\" />
+    <Folder Include="TestData\Primitives.IO\" />
+    <Folder Include="TestData\Primitives.Shell\" />
+    <Folder Include="TestData\Primitives.Shell\ls\" />
+    <Folder Include="TestData\Primitives.Shell\ls\dir0\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Primitives.IO\content.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Primitives.Shell\ls\file0" />
   </ItemGroup>
 </Project>

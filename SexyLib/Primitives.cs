@@ -57,6 +57,13 @@ namespace Atmosphere.SexyLib
 
 
 
+        public static string GetAsText(ISExp sexp)
+        {
+            return ((Atom)sexp).ToDisplay();
+        }
+
+
+
 
 
         public static bool IsPair(this ISExp sexp)
