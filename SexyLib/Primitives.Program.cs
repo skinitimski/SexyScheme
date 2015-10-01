@@ -1,4 +1,6 @@
 using System;
+using File = System.IO.File;
+using StreamReader = System.IO.StreamReader;
 using System.Linq;
 
 using Atmosphere.SexyLib.Exceptions;
@@ -58,6 +60,50 @@ namespace Atmosphere.SexyLib
                 return Atom.Null;
             }
         }
+        
+        
+                public static ISExp LoadFile(string name, params ISExp[] parameters)
+                {     
+                    CheckEnoughArguements(name, 1, parameters);
+        
+                    for (int i = 0; i < parameters.Length; i++)
+                    {
+                        ISExp arg = parameters[i];
+        
+                        if (!(IsString(arg) || IsSymbol(arg)))
+                        {
+                            string filename = (String)((Atom)arg).Value;
+        
+                            if (!File.Exists(filename))
+                            {
+                                throw new FileNotFoundException(filename);
+                            }
+        
+                            string code;
+        
+                            using (StreamReader reader = new StreamReader(filename))
+                            {
+                                code = reader.ReadToEnd();
+                            }
+                            
+                            int index = 0;
+                            
+                            while (index < code.Length && !SexyParser.IsAllWhitespaceAndComments(code, index))
+                            {
+                                ISExp sexp = SexyParser.Parse(code, ref index);
+                                
+                                sexp = Evaluator.Eval(sexp);
+                                
+                                if (!sexp.Equals(Atom.Null))
+                                {
+                                    Console.WriteLine(sexp.ToString());
+                                }
+                            }
+        
+                        }
+                    }
+                }
+
     }
 }
 
