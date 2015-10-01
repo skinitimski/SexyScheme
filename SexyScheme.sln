@@ -33,7 +33,7 @@ Global
 		{B85A9FB2-DDC5-45E0-BD15-90EE79CFFD0F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SexyCalculator\SexyCalculator.csproj
+		StartupItem = UnitTests\UnitTests.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.FileWidth = 120
